@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/index.js">
+    <link rel="stylesheet" href="app.py">
+    <title>Document</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz Interativo</h1>
+        <p id="question">Carregando pergunta...</p>
+        <div id="options"></div>
+        <button id="next-btn" onclick="loadQuestion()">Próxima Pergunta</button>
+    </div>
+
+    <script>
+        async function loadQuestion() {
+            const response = await fetch("http://127.0.0.1:5000/question");
+            const data = await response.json();
+            document.getElementById("question").innerText = data.Pergunta;
+            
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+
+            const options = [data.OpcaoA, data.OpcaoB, data.OpcaoC, data.OpcaoD]
+
+            console.log(options)
+
+            options.forEach((option) => {
+                let btn = document.createElement("button");
+                btn.innerHTML = option;
+
+                // Adicionar evento de clique
+                btn.onclick = () => {
+                    checkAnswer(option, data.RespostaCorreta);
+                    console.log(option)
+                    console.log(data.RespostaCorreta)
+                };
+
+                // Adicionar o botão ao DOM
+                optionsDiv.appendChild(btn);
+            });
+            
+                // let btn1 = document.createElement("button");
+                // let btn2 = document.createElement("button");
+                // let btn3 = document.createElement("button");
+                // let btn4 = document.createElement("button");
+                // btn1.innerText = data.OpcaoA;
+                // btn2.innerText = data.OpcaoB;
+                // btn3.innerText = data.OpcaoC;
+                // btn4.innerText = data.OpcaoD;
+                // // btn.onclick = () => checkAnswer(index + 1, data.RespostaCorreta);
+                // optionsDiv.appendChild(btn1);
+                // optionsDiv.appendChild(btn2);
+                // optionsDiv.appendChild(btn3);
+                // optionsDiv.appendChild(btn4);
+            ;
+        }
+
+        function checkAnswer(selected, correct) {
+            if (selected == correct) {
+                alert("Resposta correta!");
+                loadQuestion();
+            } else {
+                alert("Resposta errada. Tente novamente!");
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
