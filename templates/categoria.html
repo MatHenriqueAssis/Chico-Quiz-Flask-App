@@ -9,9 +9,13 @@
 <body>
     <img src="../static/imgs/Circuito 2.png" class="overlay-img" alt="Imagens de circuitos elétricos que fazem parte do Chico">
     <div>
-        <h1>Chiquiz</h1>
-        <button id="next-btn" onclick="irParaCategoria()">Jogar</button>
-        <button>Tirar Self</button>
+        <h1>Escolha uma categoria</h1>
+        <div >
+            <button onclick="irParaQuiz('Geografia')">Geografia</button>
+            <button onclick="irParaQuiz('História')">História</button>
+            <button onclick="irParaQuiz('Literatura')">Literatura</button>
+            <button onclick="irParaQuiz('Biologia')">Biologia</button>
+        </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
