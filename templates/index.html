@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../static/initial.css">
-
-    <script src="../static/main.js" defer></script>
     <title>Chico quiz</title>
 </head>
 <body>
@@ -17,24 +14,11 @@
 
     <div class="initial">
         <div class="buttons">
-            <button id="play">
-                <p>Jogar</p>
-            </button>
-            <button class="button-ghost">
-                <p>Self com o Chico</p>
-            </button>
+            <button id="play" onclick="irParaCategoria()">Jogar</button>
+            <button class="button-ghost">Self com o Chico</button>
         </div>
     </div>
-
-    <div class="categories">
-
-        <h3>Escolha uma categoria</h3>
-        <div class="buttons categories-buttons">
-            <button>História</button>
-            <button>Geografia</button>
-            <button>Literatura</button>
-            <button>Matématica</button>
-        </div>
-    </div>
+    <script src="../static/script.js"></script>
+    <script src="../static/main.js" defer></script>
 </body>
 </html>

@@ -19,11 +19,7 @@ function irParaCategoria () {
 
 async function carregarPerguntas() {
     const categoria = localStorage.getItem("categoriaSelecionada");
-    if(!categoria) {
-        alert("Nenhuma categoria selecionada")
-        window.location.href = "index"
-        return;
-    }
+    
 
     try {
         const response = await fetch(`http://127.0.0.1:5000/perguntas/${categoria}`);
@@ -107,12 +103,18 @@ function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
 
     opcoes.forEach(opcao => {
         if (opcao.innerText === respostaCorreta) {
-            opcao.classList.add("correct"); // Adiciona classe correta
-            pontos = Math.min(pontos + 20, 100);
-        } else if(opcao.innerText === opcaoSelecionada) {
-            opcao.classList.add("wrong"); // Adiciona classe errada
+            opcao.classList.add("correct"); // Destaca a resposta correta
+        } 
+        
+        if (opcao.innerText === opcaoSelecionada && opcaoSelecionada !== respostaCorreta) {
+            opcao.classList.add("wrong"); // Destaca apenas a errada selecionada
         }
     });
+
+    // Adiciona pontos apenas se o usuário acertar
+    if (opcaoSelecionada === respostaCorreta) {
+        pontos = Math.min(pontos + 20, 100);
+    }
 
     atualizarPontuacao();
 
