@@ -3,16 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/style.css">
-    <title>Document</title>
+
+    <link rel="stylesheet" href="../static/initial.css">
+
+    <script src="../static/main.js" defer></script>
+    <title>Chico quiz</title>
 </head>
 <body>
-    <img src="../static/imgs/Circuito 2.png" class="overlay-img" alt="Imagens de circuitos elétricos que fazem parte do Chico">
-    <div>
-        <h1>Chiquiz</h1>
-        <button id="next-btn" onclick="irParaCategoria()">Jogar</button>
-        <button>Tirar Self</button>
+    <div class="container">
+        <img id="chico" src="assets/imgs/chico.svg" alt="">
+        <img id="chico-boca" src="assets/imgs/boca-stand.svg" alt="">
     </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <div class="initial">
+        <div class="buttons">
+            <button id="play">
+                <p>Jogar</p>
+            </button>
+            <button class="button-ghost">
+                <p>Self com o Chico</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="categories">
+
+        <h3>Escolha uma categoria</h3>
+        <div class="buttons categories-buttons">
+            <button>História</button>
+            <button>Geografia</button>
+            <button>Literatura</button>
+            <button>Matématica</button>
+        </div>
+    </div>
 </body>
 </html>
