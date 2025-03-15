@@ -8,11 +8,16 @@
     <title>Document</title>
 </head>
 <body>
+    
     <img src="../static/imgs/Circuito 2.png" class="overlay-img" alt="Imagens de circuitos elétricos que fazem parte do Chico">
     <header>
         <div id="pontuacao">Pontos: 0/100</div>
     </header>
-    <div id="quiz">
+    <main>
+        <img id="Character" src="" alt="Chico">
+    </main>
+    <section>
+       <div id="quiz">
         <div id="timer-circle">
             <svg width="100" height="100">
                 <circle cx="50" cy="50" r="40" stroke="#ddd" stroke-width="8" fill="#FFF"/>
@@ -21,14 +26,15 @@
                 <text id="timer-text" x="50" y="55" font-size="20" font-weight="bold" text-anchor="middle" fill="#08450A"></text>
             </svg>
         </div>
-        <div>Animações Chico</div>
         
         <div id="pergunta"></div>
         <div id="options">
             <div id="options-response"></div>
         </div>
     
-    </div>
+    </div> 
+    </section>
+    
     
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

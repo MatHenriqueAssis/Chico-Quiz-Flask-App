@@ -1,22 +1,21 @@
-Pergunta,OpcaoA,OpcaoB,OpcaoC,OpcaoD,RespostaCorreta,Categoria
-Qual é a capital do Japão?,Pequim,Seul,Tóquio,Hong Kong,Tóquio,Geografia
-Quantos estados tem o Brasil?,26,27,28,29,26,Geografia
-Qual é o maior animal terrestre?,Elefante,Leão,Hipopótamo,Elefante-marinho,Elefante,Geografia
-Qual é o maior deserto do mundo?,Deserto do Sahara,Deserto de Gobi,Deserto da Arábia,Deserto da Patagônia,Deserto do Sahara,Geografia
-Qual é o menor continente do mundo?,Ásia,África,Oceania,Europa,Oceania,Geografia
-Quem foi o primeiro presidente dos Estados Unidos?,George Washington,Abraham Lincoln,Thomas Jefferson,John Adams,George Washington,História
-Em que ano o homem chegou à Lua?,1969,1959,1975,1965,1969,História
-Quem foi o primeiro imperador do Brasil?,Dom Pedro I,Dom João VI,Dom Pedro II,Dom João IV,Dom Pedro I,História
-Em que ano a Primeira Guerra Mundial começou?,1914,1912,1905,1920,1914,História
-Em que ano o Brasil proclamou a República?,1889,1871,1900,1822,1889,História
-Quem escreveu "O Primo Basílio"?,Machado de Assis,José de Alencar,José de Sá,José de Figueiredo,José de Alencar,Literatura
-Qual é a obra mais famosa de William Shakespeare?,Hamlet,Macbeth,Rei Lear,Romeu e Julieta,Romeu e Julieta,Literatura
-Quem foi o autor de "O Senhor dos Anéis"?,J.R.R. Tolkien,C.S. Lewis,George Orwell,J.K. Rowling,J.R.R. Tolkien,Literatura
-Quem escreveu "Dom Casmurro"?,Machado de Assis,José de Alencar,Clarice Lispector,Monteiro Lobato,Machado de Assis,Literatura
-Quem escreveu "Memórias Póstumas de Brás Cubas"?,Machado de Assis,José de Alencar,Graciliano Ramos,Clarice Lispector,Machado de Assis,Literatura
-Qual é o processo pelo qual as plantas produzem seu alimento?,Respiração,Crescimento,Fotossíntese,Transpiração,Fotossíntese,Biologia
-Quantos dentes permanentes tem um adulto?,28,30,32,36,32,Biologia
-O que é a fotossíntese?,Processo de respiração das plantas,Processo de reprodução das plantas,Processo de formação do solo,Processo de fabricação de alimentos pelas plantas,Processo de fabricação de alimentos pelas plantas,Biologia
-Quantos cromossomos o ser humano possui?,23,46,50,92,46,Biologia
-O que são os glóbulos vermelhos?,Células que combatem infecções,Células responsáveis pela coagulação do sangue,Células que transportam oxigênio,Células que regulam a temperatura do corpo,Células que transportam oxigênio,Biologia
-
+id_pergunta,Categoria,Pergunta,OpcaoA,OpcaoB,OpcaoC,OpcaoD,RespostaCorreta
+1,"Cultura-Maker-e-Tecnologia","O que é Cultura Maker?","Um estilo de gestão empresarial","Um tipo de fabricação em massa","Uma estratégia de marketing para startups","Um movimento que incentiva a criação e experimentação com tecnologia e inovação","Um movimento que incentiva a criação e experimentação com tecnologia e inovação"
+2,"Cultura-Maker-e-Tecnologia","Qual destas tecnologias é frequentemente utilizada na prototipação de produtos?","Impressão 3D","Calculadora","Máquina de escrever","Fotocopiadora","Impressão 3D"
+3,"Cultura-Maker-e-Tecnologia","O que significa MVP no mundo das startups?","Máquina de Protótipo Virtual","Mínimo Produto Viável","Modelo de Produção Virtual","Maior Valor de Produto","Mínimo Produto Viável"
+4,"Cultura-Maker-e-Tecnologia","O que é uma Arena de Robótica?","Um evento de recrutamento para startups","Um espaço para competições e demonstrações de robôs","Um ambiente para jogar videogames","Um local para assistir palestras sobre programação","Um espaço para competições e demonstrações de robôs"
+5,"Cultura-Maker-e-Tecnologia","Qual dessas ferramentas é usada para corte de materiais na Cultura Maker?","Fax","Impressora térmica","Scanner de documentos","Máquina de corte a laser","Máquina de corte a laser"
+6,"Inteligência-Artificial-e-Inovação","Qual é um dos principais impactos da Inteligência Artificial no mercado?","Eliminação da criatividade","Substituição completa dos seres humanos","Automação de tarefas repetitivas","Redução do uso da internet","Automação de tarefas repetitivas"
+7,"Inteligência-Artificial-e-Inovação","O que significa o termo 'Machine Learning' na Inteligência Artificial?","Um sistema de aprendizado automático baseado em dados","Um robô que ensina humanos","Um tipo de hardware usado para rodar programas "Automação de tarefas repetitivas"de IA","Um aplicativo de jogos educativos","Um sistema de aprendizado automático baseado em dados"
+8,"Inteligência-Artificial-e-Inovação","O que são Smart Cities?","Aplicativos que ajudam a encontrar cidades no mapa","Locais onde todas as casas são automatizadas","Cidades que usam tecnologia para melhorar a qualidade de vida","Cidades onde só vivem engenheiros","Cidades que usam tecnologia para melhorar a qualidade de vida"
+9,"Inteligência-Artificial-e-Inovação","Qual dessas tecnologias pode ser usada para otimizar pequenos negócios?","Agentes de Inteligência Artificial","Cartazes de papel","Calculadoras financeiras manuais","Jornais impressos","Agentes de Inteligência Artificial"
+10,"Inteligência-Artificial-e-Inovação","Qual das áreas abaixo se beneficia diretamente do uso de Inteligência Artificial?","Escrita de cartas à mão","Agricultura tradicional sem tecnologia","Manufatura artesanal sem automação","Diagnóstico médico","Diagnóstico médico"
+11,"Startups-e-Empreendedorismo","O que é um pitch em startups?","Uma apresentação rápida e persuasiva de um negócio","Um relatório financeiro detalhado","Um software para gerenciamento de equipes","Um evento de arrecadação de fundos","Uma apresentação rápida e persuasiva de um negócio"
+12,"Startups-e-Empreendedorismo","O que significa bootstrapping para startups?","Receber milhões em investimentos logo no início","Crescer com recursos próprios, sem investimento externo","Criar um aplicativo sem programadores","Vender a empresa para outra companhia","Crescer com recursos próprios, sem investimento externo"
+13,"Startups-e-Empreendedorismo","Qual dessas ações é fundamental para a captação de investidores?","Ter um modelo de negócios escalável","Usar um nome difícil de pronunciar","Postar frequentemente nas redes sociais","Ter um logotipo bonito","Ter um modelo de negócios escalável"
+14,"Startups-e-Empreendedorismo","O que é um ecossistema de inovação?","Uma rede de empresas, universidades e investidores que colaboram para o crescimento de startups","Uma floresta tecnológica","Um laboratório secreto do governo","Um software para gestão empresarial","Uma rede de empresas, universidades e investidores que colaboram para o crescimento de startups"
+15,"Startups-e-Empreendedorismo","Qual destes eventos ocorre durante o Startup Day e foca em apresentações rápidas de startups?","Campeonato de Games","Desafio de Marketing","Feira de Robótica","Rodada de Pitches","Rodada de Pitches"
+16,"Inovação-no-Agronegócio-e-Saúde","O que são indicações geográficas no agronegócio?","Mapeamento de solo via satélite","Certificações que garantem a origem e qualidade de um produto regional","Aplicativos de previsão do tempo","Novas técnicas de plantio","Certificações que garantem a origem e qualidade de um produto regional"
+17,"Inovação-no-Agronegócio-e-Saúde","Qual tecnologia pode ser usada para otimizar a produção agrícola?","Drones para monitoramento das plantações","Impressoras 3D para imprimir sementes","Realidade virtual para treinar agricultores","Robôs para realizar cirurgias","Drones para monitoramento das plantações"
+18,"Inovação-no-Agronegócio-e-Saúde","O que são HealthTechs?","Startups focadas em inovação no setor de saúde","Redes sociais para médicos","Empresas de tecnologia voltadas para games","Equipamentos médicos tradicionais","Startups focadas em inovação no setor de saúde"
+19,"Inovação-no-Agronegócio-e-Saúde","Qual benefício a inovação pode trazer para o setor de saúde?","Substituir todos os médicos por robôs","Reduzir a expectativa de vida da população","Eliminar a necessidade de consultas médicas","Melhor acesso a serviços médicos e diagnósticos mais precisos","Melhor acesso a serviços médicos e diagnósticos mais precisos"
+20,"Inovação-no-Agronegócio-e-Saúde","Qual tecnologia pode melhorar a eficiência nos hospitais?","Contadores manuais de pacientes","Pastas de papel para organizar fichas","Prontuários eletrônicos","Fax para enviar exames","Prontuários eletrônicos"

@@ -7,6 +7,23 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+CSV_FILE_GAME = "Log-Jogo.csv"
+
+def initialize_csv():
+    if not os.path.exists(CSV_FILE_GAME):
+        df = pd.DataFrame(columns=[
+            "id_pessoa", "horario_inicio_jogo", "horario_fim_jogo", "horario_total", 
+            "respostas_acertadas", "respostas_skip", "respostas_erradas"
+        ])
+        df.to_csv(CSV_FILE_GAME, index=False)
+
+CSV_FILE = "Log-Foto.csv"
+
+def initialize_csv():
+    if not os.path.exists(CSV_FILE):
+        df = pd.DataFrame(columns=["id_pessoa", "horario_da_foto"])
+        df.to_csv(CSV_FILE, index=False)
+
 csv_path = os.path.join(os.path.dirname(__file__), "instances", "Quiz-Chico.csv")
 
 def load_question():
@@ -14,6 +31,52 @@ def load_question():
     return df.to_dict(orient="records")
 
 questions = load_question()
+
+'''
+    list_question= random.choice(questions)
+    return jsonify(question)
+'''
+@app.route('/log_jogo', methods=['POST'])
+def log_jogo():
+    data = request.json
+    required_fields = [
+        "id_pessoa", "horario_inicio_jogo", "horario_fim_jogo", "horario_total", 
+        "respostas_acertadas", "respostas_skip", "respostas_erradas", "pontuacao_final"
+    ]
+    
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Campos obrigatórios ausentes"}), 400
+    
+    df = pd.DataFrame([data], columns=required_fields)
+    df.to_csv(CSV_FILE_GAME, mode='a', header=not os.path.exists(CSV_FILE), index=False)
+    
+    return jsonify({"message": "Registro salvo com sucesso"}), 201
+
+@app.route('/log_foto', methods=['POST'])
+def log_foto():
+    data = request.json
+    id_pessoa = data.get("id_pessoa")
+    horario_da_foto = data.get("horario_da_foto")
+    
+    if not id_pessoa or not horario_da_foto:
+        return jsonify({"error": "Campos obrigatórios ausentes"}), 400
+    
+    df = pd.DataFrame([[id_pessoa, horario_da_foto]], columns=["id_pessoa", "horario_da_foto"])
+    df.to_csv(CSV_FILE, mode='a', header=not os.path.exists(CSV_FILE), index=False)
+    
+    return jsonify({"message": "Registro salvo com sucesso"}), 201
+
+@app.route('/selfie')
+def foto():
+    return render_template('fotos.html')
+
+@app.route('/categoria')
+def categoria():
+    return render_template('categoria.html')
+
+@app.route("/quiz")
+def quiz():
+    return render_template('quiz.html')
 
 @app.route('/perguntas/<categoria>', methods=['GET'])
 def perguntas_categoria(categoria):
@@ -23,25 +86,6 @@ def perguntas_categoria(categoria):
         return jsonify({"erro": "Categoria não encontrada ou sem perguntas."}), 404
     
     return jsonify(perguntas_filtradas)
-
-
-@app.route("/quiz")
-def quiz():
-    return render_template('quiz.html')
-
-'''
-@app.route("/question", methods= ["GET"])
-def get_questions(Categoria):
-    for q in questions:
-        if q["Geografia"] == Categoria:
-            list_question.append(q)
-
-    list_question= random.choice(questions)
-    return jsonify(question)
-'''
-@app.route('/categoria')
-def categoria():
-    return render_template('categoria.html')
 
 @app.route('/')
 def home():

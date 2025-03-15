@@ -32,11 +32,14 @@ body {
     background-color: #2b751a;
 }
 
+
 #pergunta {
     width: 100%;
     padding: 15px;
+    color: white;
     text-align: center;
     font-size: 30px;
+    margin-top: 20%;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -75,6 +78,17 @@ body {
     justify-content: flex-end;
     align-items: center;
     color: white;
+}
+
+#Character{
+    width: 60%;
+    height: 50vh;
+    top: 20%;
+    right: 20%;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    
 }
 
 .correct {

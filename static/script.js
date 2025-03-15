@@ -5,6 +5,7 @@ const CIRCUNFERENCIA = 2 * Math.PI * 40; // Circunferência do círculo (r=40)
 let perguntas = []; // 🔹 Armazena as perguntas globalmente
 let pontos = 0;
 
+
 const irParaQuiz = async (categoria) => {
 
     localStorage.setItem("categoriaSelecionada", categoria);
@@ -15,6 +16,7 @@ const irParaQuiz = async (categoria) => {
 
 function irParaCategoria () {
     window.location.href = "categoria"
+
 }
 
 async function carregarPerguntas() {
@@ -83,6 +85,19 @@ function iniciarTemporizador() {
             passarParaProximaPergunta();
             return
         }
+        
+    
+        if(tempoRestante === 30) {
+            changeFace("FalandoGif");
+        }
+
+        if(tempoRestante <= 20){
+            changeFace("AnsiedadeGif")
+        }
+    
+        
+    console.log(document.getElementById("Character"));
+
 
     let tempoTotal = tempoRestante;
         tempoRestante--;
@@ -94,9 +109,6 @@ function iniciarTemporizador() {
         atualizarCorFundo(tempoRestante, tempoTotal)
     }, 1000);
 }
-
-
-
 
 function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
     const opcoes = document.querySelectorAll("#options-response button");
@@ -145,7 +157,6 @@ async function passarParaProximaPergunta() {
     }
 }
 
-
 function atualizarCorFundo(tempoRestante) {
     let fundo = document.body;
 
@@ -167,6 +178,15 @@ function atualizarCorFundo(tempoRestante) {
     fundo.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 }
 
+function changeFace(expression) {
+    const chico = document.getElementById("Character");
+    if (!chico) {
+        console.error("Elemento #Character não encontrado!");
+    }
+    chico.src = `../static/gifs/${expression}.gif`
+
+
+}
 
 // Evento de clique nos botões (Event Delegation)
 document.addEventListener("DOMContentLoaded", function () {
