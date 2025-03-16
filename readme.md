@@ -4,8 +4,8 @@
 
 <p align="center">
     <a href="#-Sobre-o-Projeto"> Sobre</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Como-Funciona?"> Como Funciona </a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Como-Funciona?"> Funcionalidades </a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Como-Funciona"> Como Funciona </a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Funcionalidades"> Funcionalidades </a>&nbsp;&nbsp; | &nbsp;&nbsp;
     <a href="#-Tecnologias-Utilizadas"> Tecnologias Utilizadas </a>&nbsp;&nbsp; | &nbsp;&nbsp;
     <a href="#-Galeria"> Galeria </a>&nbsp;&nbsp; | &nbsp;&nbsp;
     <a href="#-Autores"> Autores </a>&nbsp;&nbsp; &nbsp;&nbsp;
