@@ -80,7 +80,7 @@
 <p align="center">
     <img src="https://s4.ezgif.com/tmp/ezgif-4264e9a3e3ab3b.gif" alt="Gif Animado da Interface do Quiz do Chico"> 
 </p>
-<ul><li>Crabstick e suas etapas de desnevolvimento</li></ul>
+<ul><li>Crabstick e suas etapas de desenvolvimento</li></ul>
  <p align="center">   
     <img src="https://i.imgur.com/7D4woPY.png" alt="Arquitetura da Informação">
 </p>
