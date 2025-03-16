@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="#-Sobre-o-Projeto"> Sobre</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Como-Funciona"> Como Funciona </a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Como-Jogar"> Como Jogar </a>&nbsp;&nbsp; | &nbsp;&nbsp;
     <a href="#-Funcionalidades"> Funcionalidades </a>&nbsp;&nbsp; | &nbsp;&nbsp;
     <a href="#-Tecnologias-Utilizadas"> Tecnologias Utilizadas </a>&nbsp;&nbsp; | &nbsp;&nbsp;
     <a href="#-Galeria"> Galeria </a>&nbsp;&nbsp; | &nbsp;&nbsp;
@@ -23,7 +23,7 @@
     <img src="https://s4.ezgif.com/tmp/ezgif-424bdb2018626b.gif" alt="Gif Animado Chico Thug Life"> 
 
 
-## ⚙️ Como Funciona?
+## 🎮 Como Jogar
 
 #### Início do Jogo
 * O jogador acessa a tela inicial e pode escolher entre:
