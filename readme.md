@@ -13,9 +13,9 @@
 
 ## 💡 Sobre o Projeto
 <p>🗨🦀 O <b>Quiz do Chico</b> é um jogo interativo criado em parceria entre a <b>Faculdade SENAC Pernambuco</b>, alunos de <b>Análise e Desenvolvimento de Sistemas</b> e o <b>SEBRAE</b>. Apresentado no <b>ec’n’Play 2024</b> com sensores que emitiam reações, Chico retorna agora com um <b>quiz educativo</b> e um <b>Crabstick (joystick) exclusivo</b>. Solicitado pelo SEBRAE, o projeto amplia a experiência interativa, permitindo que jogadores testem conhecimentos enquanto Chico reage dinamicamente, além de oferecer um modo selfie para interações divertidas. </p>
-<p> 📌 Parceiro: SEBRAE</p>
-<P>👨‍💻 Desenvolvido por: Professores e Alunos do curso de Análise e Desenvolvimento de Sistemas - Faculdade SENAC Pernambuco</P>
-<p> 📅 Duração do projeto: 27/02/2025 - 22/03/2025 </p>
+<p> 📌 <b>Parceiro:</b> SEBRAE</p>
+<P>👨‍💻 <b>Desenvolvido por:</b> Professores e Alunos do curso de Análise e Desenvolvimento de Sistemas - Faculdade SENAC Pernambuco</P>
+<p> 📅 <b>Duração do projeto:</b> 27/02/2025 - 22/03/2025 </p>
 
 <p>🔗<a href="#"> Chico no Startup Day</a></p>
 <p>🔗<a href="http://i9i.app/chico"> Conheça Chico</a></p>
