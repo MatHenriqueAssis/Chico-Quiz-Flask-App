@@ -17,8 +17,10 @@
 <P>👨‍💻 <b>Desenvolvido por:</b> Professores e Alunos do curso de Análise e Desenvolvimento de Sistemas - Faculdade SENAC Pernambuco</P>
 <p> 📅 <b>Duração do projeto:</b> 27/02/2025 - 22/03/2025 </p>
 
-<p>🔗<a href="#"> Chico no Startup Day</a></p>
-<p>🔗<a href="http://i9i.app/chico"> Conheça Chico</a></p>
+<p align="center">
+🔗<a href="#"> Chico no Startup Day</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+🔗<a href="http://i9i.app/chico"> Conheça Chico</a></p>
+
 <p align="center">
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW5vaXZoZ3ZqbHdhNjl2dnZmY3NjM2NoMG5pNm15MDc1bzhwcjZrayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L02dJREKT1zxTxIzpl/giphy.gif" alt="Gif Animado Chico Thug Life"> 
 
