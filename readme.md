@@ -19,6 +19,8 @@
 
 <p>🔗<a href="#"> Chico no Startup Day</a></p>
 <p>🔗<a href="http://i9i.app/chico"> Conheça Chico</a></p>
+<p align="center">
+    <img src="https://s4.ezgif.com/tmp/ezgif-4264e9a3e3ab3b.gif" alt="Gif Animado da Interface do Quiz do Chico"> 
 
 
 ## ⚙️ Como Funciona?
