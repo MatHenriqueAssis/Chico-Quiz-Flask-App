@@ -20,7 +20,7 @@
 <p>🔗<a href="#"> Chico no Startup Day</a></p>
 <p>🔗<a href="http://i9i.app/chico"> Conheça Chico</a></p>
 <p align="center">
-    <img src="https://s4.ezgif.com/tmp/ezgif-424bdb2018626b.gif" alt="Gif Animado Chico Thug Life"> 
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW5vaXZoZ3ZqbHdhNjl2dnZmY3NjM2NoMG5pNm15MDc1bzhwcjZrayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L02dJREKT1zxTxIzpl/giphy.gif" alt="Gif Animado Chico Thug Life"> 
 
 
 ## 🎮 Como Jogar
@@ -78,7 +78,7 @@
 
 <ul><li>Protótipo de alta fidelidade no Figma do Quiz do Chico</li></ul>
 <p align="center">
-    <img src="https://s4.ezgif.com/tmp/ezgif-4264e9a3e3ab3b.gif" alt="Gif Animado da Interface do Quiz do Chico"> 
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmwxZTV5NGtidGRyaTZ1anp0bGE2NGNxazFnNWpoa3hheWh3bWk5YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Kk1HAdc8xWNGK65LMQ/giphy.gif" alt="Gif Animado da Interface do Quiz do Chico"> 
 </p>
 <ul><li>Crabstick e suas etapas de desenvolvimento</li></ul>
  <p align="center">   
