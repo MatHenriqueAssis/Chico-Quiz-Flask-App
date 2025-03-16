@@ -114,7 +114,7 @@
 - [Linkedin](https://www.linkedin.com/in/ma%C3%ADsa-let%C3%ADcia-9a7b2b350?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 - [Github](https://github.com/HadryTz)
 
-#### Ruth Xavier - Designer de Produto / Ilustração / Game Designer
+#### Ruth Xavier - UI e UX Designer / Ilustração / Game Designer
 - [Linkedin](https://www.linkedin.com/in/ruthxavier/)
 - [Github](https://github.com/xavierruth)
 - [Behance](https://www.behance.net/xavierruth)
