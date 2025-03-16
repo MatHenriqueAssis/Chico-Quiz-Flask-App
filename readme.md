@@ -29,7 +29,7 @@
 * O jogador acessa a tela inicial e pode escolher entre:
     * Jogar o Quiz: Responder perguntas de uma categoria escolhida;
     * Tirar uma selfie com o Chico: Interagir com o personagem de forma divertida;
-    * Modo Standby: O Chico permanecerá aguardando alguma interação.
+* Modo Standby: O Chico permanecerá aguardando alguma interação.
 
 #### Jogando o Quiz
 * O jogador escolhe uma categoria de perguntas;
