@@ -3,12 +3,12 @@
 #### Menu
 
 <p align="center">
-    <a href="#-Sobre-o-Projeto"> Sobre</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Como-Jogar"> Como Jogar </a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Funcionalidades"> Funcionalidades </a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Tecnologias-Utilizadas"> Tecnologias Utilizadas </a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Galeria"> Galeria </a>&nbsp;&nbsp; | &nbsp;&nbsp;
-    <a href="#-Autores"> Autores </a>&nbsp;&nbsp; &nbsp;&nbsp;
+    <a href="#-Sobre-o-Projeto">Sobre</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Como-Jogar">Como Jogar</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Funcionalidades">Funcionalidades</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Tecnologias-Utilizadas">Tecnologias Utilizadas</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Galeria">Galeria</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="#-Autores">Autores</a>&nbsp;&nbsp; &nbsp;&nbsp;
 </p>
 
 ## 💡 Sobre o Projeto
@@ -18,7 +18,7 @@
 <p> 📅 <b>Duração do projeto:</b> 27/02/2025 - 22/03/2025 </p>
 <br>
 <p align="center">
-    🔗<a href="#"> Chico no Startup Day</a> &nbsp;&nbsp; • &nbsp;&nbsp;
+    🔗<a href="#"> Chico no Startup Day</a> &nbsp;&nbsp; | &nbsp;&nbsp;
     🔗<a href="http://i9i.app/chico"> Conheça o Chico</a>
 </p>
 
