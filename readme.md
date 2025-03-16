@@ -70,7 +70,7 @@
 - Frontend Site: HTML5, CSS3 e Javascript - Desenvolvimento do Site;
 - Frontend Game: HTML5, CSS3, JavaScript e Electron.JS - Interface gráfica e executável do Quiz;
 - Backend Game: Python e Flask - API para gerenciamento das perguntas e pontuação do quiz;
-- Banco de Dados: CSV - Integraçaõ com planilhas dinâmicas para as perguntas do quiz;
+- Banco de Dados: CSV - Integração com planilhas dinâmicas para as perguntas do quiz;
 - Maker: Arduino, Corte a laser - Para fazer o Crabstick (Joystick).
  
 
