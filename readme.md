@@ -119,7 +119,7 @@
 - [Github](https://github.com/xavierruth)
 - [Behance](https://www.behance.net/xavierruth)
 
-#### Vanessa Matias - Ilustração / Game Designer
+#### Vanessa Matias - Design de Personagem / Ilustração / Game Designer
 - [Linkedin](https://www.linkedin.com/in/vanessamatiasdev/)
 - [Github](https://github.com/Vanessa-Matias)
 
