@@ -3,6 +3,7 @@ let timer; // Variável para armazenar o temporizador
 let indexPergunta = 0; // Índice da pergunta atual
 const CIRCUNFERENCIA = 2 * Math.PI * 40; // Circunferência do círculo (r=40)
 let perguntas = []; // 🔹 Armazena as perguntas globalmente
+const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
 
 
@@ -18,6 +19,12 @@ function irParaCategoria () {
     window.location.href = "categoria"
 
 }
+
+function irParaHome() {
+    console.log("Botão de reinício clicado!"); // Para debug
+    window.location.href = "/"; // Confirme se isso funciona no console do navegador
+}
+
 
 async function carregarPerguntas() {
     const categoria = localStorage.getItem("categoriaSelecionada");
@@ -94,10 +101,6 @@ function iniciarTemporizador() {
         if(tempoRestante <= 20){
             changeFace("AnsiedadeGif")
         }
-    
-        
-    console.log(document.getElementById("Character"));
-
 
     let tempoTotal = tempoRestante;
         tempoRestante--;
@@ -113,13 +116,15 @@ function iniciarTemporizador() {
 function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
     const opcoes = document.querySelectorAll("#options-response button");
 
+    
     opcoes.forEach(opcao => {
+        opcao.disabled = true;
         if (opcao.innerText === respostaCorreta) {
             opcao.classList.add("correct"); // Destaca a resposta correta
         } 
         
         if (opcao.innerText === opcaoSelecionada && opcaoSelecionada !== respostaCorreta) {
-            opcao.classList.add("wrong"); // Destaca apenas a errada selecionada
+            opcao.classList.add("wrong");
         }
     });
 
@@ -132,7 +137,10 @@ function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
 
     // Remove os efeitos após 1 segundo e carrega a próxima pergunta
     setTimeout(() => {
-        opcoes.forEach(opcao => opcao.classList.remove("correct", "wrong"));
+        opcoes.forEach(opcao => {
+            opcao.classList.remove("correct", "wrong");
+            opcao.disabled = false;
+        });
         passarParaProximaPergunta();
     }, 1000);   
 }
@@ -153,7 +161,10 @@ async function passarParaProximaPergunta() {
     if (indexPergunta < perguntas.length) {
         exibirPergunta(indexPergunta);
     } else {
-        document.getElementById("quiz").innerHTML = "<h2>Quiz finalizado!</h2>";
+        document.getElementById("quiz").innerHTML = "<h2>Quiz Finalizado!</h2>";
+
+        const restartButton = document.getElementById("restart");
+        restartButton.style.display = "block";
     }
 }
 
@@ -178,15 +189,39 @@ function atualizarCorFundo(tempoRestante) {
     fundo.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 }
 
+function preloadGif(expression, callback) {
+    if(typeof callback !== "function") callback = () => {}
+    if(!gifCache[expression]) {
+            callback();
+        }
+    const img = new Image();
+    img.src = `../static/gifs/${expression}.gif`;
+    img.onload = () => {
+        gifCache[expression] = img;
+        callback();
+    }        
+}
+
 function changeFace(expression) {
     const chico = document.getElementById("Character");
     if (!chico) {
         console.error("Elemento #Character não encontrado!");
+        return;
     }
-    chico.src = `../static/gifs/${expression}.gif`
 
-
+    if(gifCache[expression]) {
+        chico.src = gifCache[expression].src;
+    } else {
+        console.warn(`GIF ${expression} ainda não carregado!`);
+        chico.src = `../static/gifs/${expression}.gif`;
+    }
 }
+
+const gifList = ["FalandoGif", "AnsiedadeGif", "CoraçãoGif", "ThuglifeGif"];
+
+// Pré-carregar todos os GIFs
+gifList.forEach(expression => preloadGif(expression));
+
 
 // Evento de clique nos botões (Event Delegation)
 document.addEventListener("DOMContentLoaded", function () {
@@ -199,5 +234,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Exibe a primeira pergunta ao carregar a página
-exibirPergunta();
+//DomContentLoaded para encontrar o chico e renderizar o gif
+document.addEventListener("DOMContentLoaded", () => {
+    const chico = document.getElementById("Character");
+
+    if(chico) {
+        const img = new Image();
+        img.src = "./gifs/InicioGif.gif";
+        img.onload = () => {
+            chico.src = img.src
+        }
+    }
+})
+
+
+//DomContentLoaded para preload
+document.addEventListener("DOMContentLoaded", async () => {
+    
+    try {
+        await Promise.all(gifList.map(expression =>{
+            return new Promise(resolve => preloadGif(expression, resolve));
+        }));
+        console.log("Todos os gifs carregados");
+        exibirPergunta();
+    } catch (error) {
+        console.log("Os gifs não foram carregados corretamente.", error)    
+    }
+    
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const restartButton = document.getElementById("restart");
+
+    if(restartButton) {
+        restartButton.addEventListener("click", irParaHome);
+    }
+    else{
+        console.log("ERROOOOOOOOO")
+    }
+})

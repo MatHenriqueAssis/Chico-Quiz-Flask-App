@@ -46,6 +46,17 @@ body::before {
     height: auto; 
     transition: all ease .5s;
 }
+#espaco-chico{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#Character{
+    width: 60%;
+    display: flex;
+    position: relative;
+}
 
 .content{
     display: flex;

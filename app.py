@@ -78,6 +78,7 @@ def categoria():
 def quiz():
     return render_template('quiz.html')
 
+
 @app.route('/perguntas/<categoria>', methods=['GET'])
 def perguntas_categoria(categoria):
     perguntas_filtradas = [p for p in questions if p['Categoria'].lower() == categoria.lower()]
@@ -90,6 +91,10 @@ def perguntas_categoria(categoria):
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/standby')
+def standby():
+    return render_template('standby.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
