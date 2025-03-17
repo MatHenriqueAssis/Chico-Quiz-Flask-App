@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-CSV_FILE_GAME = "Log-Jogo.csv"
+CSV_FILE_GAME = os.path.join(os.path.dirname(__file__), "instances","Log-Jogo.csv")
 
 def initialize_csvjogo():
     if not os.path.exists(CSV_FILE_GAME):
@@ -17,7 +17,7 @@ def initialize_csvjogo():
         ])
         df.to_csv(CSV_FILE_GAME, index=False)
 
-CSV_FILE = "Log-Foto.csv"
+CSV_FILE = os.path.join(os.path.dirname(__file__), "instances","Log-Foto.csv")
 
 def initialize_csvfoto():
     if not os.path.exists(CSV_FILE):
@@ -30,7 +30,7 @@ def load_question():
     df = pd.read_csv(csv_path)
     return df.to_dict(orient="records")
 
-questions = load_question()
+questions_global = load_question()
 
 '''
     list_question= random.choice(questions)
@@ -81,6 +81,7 @@ def quiz():
 
 @app.route('/perguntas/<categoria>', methods=['GET'])
 def perguntas_categoria(categoria):
+    questions = load_question()
     perguntas_filtradas = [p for p in questions if p['Categoria'].lower() == categoria.lower()]
     
     if not perguntas_filtradas:

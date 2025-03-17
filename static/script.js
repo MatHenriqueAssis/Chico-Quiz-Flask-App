@@ -6,6 +6,10 @@ let perguntas = []; // 🔹 Armazena as perguntas globalmente
 const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
 
+const API_BASE_URL = window.location.hostname === "localhost"
+    ? "http://127.0.0.1:5000/perguntas"
+    : "https://jogodochico.pythonanywhere.com/perguntas";
+
 
 const irParaQuiz = async (categoria) => {
 
@@ -28,23 +32,17 @@ function irParaHome() {
 
 async function carregarPerguntas() {
     const categoria = localStorage.getItem("categoriaSelecionada");
-    const urls = [
-        "jogodochico.pythonanywhere.com",
-        "http://127.0.0.1:5000/perguntas"
-    ]
-
-    try {
-        const response = await fetch(`${urls}/${categoria}`);
-        if (!response.ok) {
-            throw new Error("Erro ao carregar as perguntas");
-        }
-        const perguntas = await response.json();
-        return perguntas;
-    } catch (error) {
-        console.error("Erro ao buscar perguntas:", error);
-        return [];
-    }
-
+       try {
+            const response = await fetch(`${API_BASE_URL}/${categoria}`);
+            if (!response.ok) {
+                throw new Error("Erro ao carregar as perguntas");
+            }
+              return await response.json();
+            
+        } catch (error) {
+            console.error("Erro ao buscar perguntas:", error);
+            return [];
+        } 
 }
 
 async function exibirPergunta(index = 0) {
