@@ -9,7 +9,7 @@ CORS(app)
 
 CSV_FILE_GAME = "Log-Jogo.csv"
 
-def initialize_csv():
+def initialize_csvjogo():
     if not os.path.exists(CSV_FILE_GAME):
         df = pd.DataFrame(columns=[
             "id_pessoa", "horario_inicio_jogo", "horario_fim_jogo", "horario_total", 
@@ -19,7 +19,7 @@ def initialize_csv():
 
 CSV_FILE = "Log-Foto.csv"
 
-def initialize_csv():
+def initialize_csvfoto():
     if not os.path.exists(CSV_FILE):
         df = pd.DataFrame(columns=["id_pessoa", "horario_da_foto"])
         df.to_csv(CSV_FILE, index=False)

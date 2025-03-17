@@ -28,10 +28,13 @@ function irParaHome() {
 
 async function carregarPerguntas() {
     const categoria = localStorage.getItem("categoriaSelecionada");
-    
+    const urls = [
+        "jogodochico.pythonanywhere.com",
+        "http://127.0.0.1:5000/perguntas"
+    ]
 
     try {
-        const response = await fetch(`http://127.0.0.1:5000/perguntas/${categoria}`);
+        const response = await fetch(`${urls}/${categoria}`);
         if (!response.ok) {
             throw new Error("Erro ao carregar as perguntas");
         }
