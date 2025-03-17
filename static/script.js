@@ -273,3 +273,23 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("ERROOOOOOOOO")
     }
 })
+
+document.addEventListener("keydown", function(event) {
+    const quizopcoes = document.querySelectorAll("#options-response button");
+    const categoriaopcoes = document.querySelectorAll(".option-response");
+
+    const opcoes = [...quizopcoes, ...categoriaopcoes];
+    
+    if(!opcoes.length) return;
+    
+    const keyoptions = ["a", "b", "c", "d", "r"];
+    const index = keyoptions.indexOf(event.key);
+
+    if(index !== -1 && opcoes[index]) {
+        opcoes[index].click();
+    }
+
+    if(event.key === "r") {
+        irParaHome();
+    }
+})

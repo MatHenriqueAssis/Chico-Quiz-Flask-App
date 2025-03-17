@@ -93,7 +93,7 @@ body::before {
     color: #fff;
 }
 
-.button-ghost{
+#button-ghost{
     background-color: transparent !important;
     color: #fff !important;
     border: 2px solid #fff !important;
