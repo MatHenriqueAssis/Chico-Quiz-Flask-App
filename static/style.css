@@ -53,6 +53,7 @@ body {
     flex-direction: row;
     gap: 20px;
     justify-content: center;
+    padding: 30px;
     
 }
 #options-response button {
@@ -68,10 +69,12 @@ body {
 }
 
 #timer-circle {
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-top: 5%;
+    
 }
 
 #pontuacao{
@@ -127,6 +130,7 @@ body {
     margin-top: 80%;
     color: white;
 }
+
 
 .hidden{
     display: none;
@@ -261,4 +265,9 @@ body {
     font-size: 16px;
     position: relative;
     z-index: 1000;
+}
+.option-response.active{
+    background-color: #408131;
+    color: white;
+    font-weight: bold;
 }

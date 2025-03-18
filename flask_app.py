@@ -3,6 +3,7 @@ import pandas as pd
 from flask_cors import CORS
 import random
 import os
+import foto_final as ff
 
 app = Flask(__name__)
 CORS(app)
@@ -87,6 +88,11 @@ def log_foto():
 @app.route('/selfie')
 def foto():
     return render_template('fotos.html')
+
+@app.route('/final_quiz')
+def foto_final():
+    ff.capture_and_send_image()
+    return render_template('index.html')
 
 @app.route('/categoria')
 def categoria():

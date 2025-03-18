@@ -1,10 +1,12 @@
 let tempoRestante = 30; // Tempo por pergunta (em segundos)
 let timer; // Variável para armazenar o temporizador
 let indexPergunta = 0; // Índice da pergunta atual
-const CIRCUNFERENCIA = 2 * Math.PI * 40; // Circunferência do círculo (r=40)
+const CIRCUNFERENCIA = 2 * Math.PI * 60; // Circunferência do círculo (r=60)
 let perguntas = []; // 🔹 Armazena as perguntas globalmente
 const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
+let tempoTotal = 30;
+
 
 const API_BASE_URL = window.location.hostname === "localhost"
     ? "http://127.0.0.1:5000/perguntas"
@@ -15,6 +17,7 @@ const irParaQuiz = async (categoria) => {
 
     localStorage.setItem("categoriaSelecionada", categoria);
     window.location.href = "quiz"
+    
 
     await loadQuestion(categoria)
 }
@@ -52,6 +55,7 @@ async function exibirPergunta(index = 0) {
 
     if (index >= perguntas.length) {
         document.getElementById("quiz").innerHTML = "<h2>Quiz Finalizado</h2>";
+
         return;
     }
 
@@ -62,12 +66,13 @@ async function exibirPergunta(index = 0) {
     optionList.innerHTML = ""; // Limpa as opções anteriores
 
     const opcoes = ["OpcaoA", "OpcaoB", "OpcaoC", "OpcaoD"];
+    const letras = ["A", "B", "C", "D"];
 
-    opcoes.forEach(opcao => {
+    opcoes.forEach((opcao, i) => {
         let button = document.createElement("button");
         button.classList.add("quiz-option");
         button.dataset.resposta = perguntaAtual[opcao]; // Armazena a resposta no dataset
-        button.textContent = perguntaAtual[opcao];
+        button.textContent = `${letras[i]}. ${perguntaAtual[opcao]}`;
         optionList.appendChild(button);
     });
 
@@ -82,9 +87,10 @@ function iniciarTemporizador() {
 
     
     clearInterval(timer);
-    tempoRestante = 30; // Reinicia o tempo
-    timerCircle.style.strokeDasharray = CIRCUNFERENCIA;
-    timerCircle.style.strokeDashoffset = "0";
+    tempoRestante = tempoTotal // Reinicia o tempo
+    timerCircle.setAttribute("stroke-dasharray", CIRCUNFERENCIA);
+    timerCircle.setAttribute("stroke-dashoffset", CIRCUNFERENCIA); 
+
     timerText.textContent = tempoRestante; // Atualiza o valor inicial na interface
 
     timer = setInterval(() => {
@@ -103,13 +109,13 @@ function iniciarTemporizador() {
             changeFace("NervosoPequeno")
         }
 
-    let tempoTotal = tempoRestante;
-        tempoRestante--;
+        let progresso =  CIRCUNFERENCIA * (tempoRestante / tempoTotal);
+        requestAnimationFrame(() => {
+            timerCircle.style.strokeDashoffset = progresso.toFixed(2);
+        });
+
         timerText.textContent = tempoRestante;
-
-        let progresso = (tempoRestante / 30) * CIRCUNFERENCIA;
-        timerCircle.style.strokeDashoffset = CIRCUNFERENCIA - progresso;
-
+        tempoRestante--;
         atualizarCorFundo(tempoRestante, tempoTotal)
     }, 1000);
 }
@@ -139,6 +145,8 @@ function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
         pontos = Math.min(pontos + 20, 100);
     }
 
+
+
     atualizarPontuacao();
 
     // Remove os efeitos após 1 segundo e carrega a próxima pergunta
@@ -148,7 +156,7 @@ function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
             opcao.disabled = false;
         });
         passarParaProximaPergunta();
-    }, 1000);   
+    }, 2000);   
 }
 
 function tempoEsgotado() {
@@ -156,7 +164,7 @@ function tempoEsgotado() {
 }
 
 function atualizarPontuacao() {
-    document.getElementById("pontuacao").textContent = `Pontos: ${pontos}`;
+    document.getElementById("pontuacao").textContent = `Pontos: ${pontos}/100`;
 }
 
 async function passarParaProximaPergunta() {
@@ -168,10 +176,13 @@ async function passarParaProximaPergunta() {
         exibirPergunta(indexPergunta);
     } else {
         document.getElementById("quiz").innerHTML = "<h2>Quiz Finalizado!</h2>";
-
+        
+        window.location.href = "/final_quiz";
         const restartButton = document.getElementById("restart");
+        telafinal();
         restartButton.style.display = "block";
     }
+
 }
 
 function atualizarCorFundo(tempoRestante) {
@@ -223,6 +234,22 @@ function changeFace(expression) {
     }
 }
 
+function telafinal() {
+    // Esconder qualquer GIF anterior
+    document.getElementById("chico-img").style.display = "none";
+
+    // Mostrar apenas o GIF final correspondente à pontuação
+    setTimeout(() => {
+        document.getElementById("chico-img").style.display = "block";
+        if (pontos <= 40) {
+            changeFace("ChoroPequeno");
+        } else if (pontos <= 80) {
+            changeFace("BobeiraPequeno");
+        } else if (pontos === 100) {
+            changeFace("FelizPequeno");
+        }
+    }, 100); // Pequeno delay para garantir a atualização
+}
 const gifList = ["FelizPequeno", "FalandoPequeno", "ChoroPequeno", "BobeiraPequeno"];
 
 // Pré-carregar todos os GIFs
@@ -272,6 +299,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 document.addEventListener("DOMContentLoaded", function () 
 {
     const restartButton = document.getElementById("restart");
+    let timerCircle = document.getElementById("timer-circle")
 
     if(restartButton) {
         restartButton.addEventListener("click", irParaHome);
@@ -296,7 +324,7 @@ document.addEventListener("keydown", function(event) {
     
     if(!opcoes.length) return;
     
-    switch (event.key) {
+    switch (event.key.toLowerCase()) {
         case "a":
             if (opcoes[0]) opcoes[0].click();
             break;
