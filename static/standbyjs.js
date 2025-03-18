@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const gifs = [
-        "../static/gifs/AnsiedadeGif.gif",
-        "../static/gifs/CoraçãoGif.gif",
-        "../static/gifs/InicioGif.gif",
-        "../static/gifs/ThuglifeGif.gif",
-        "../static/gifs/FalandoGif.gif"
+        "../static/gifs/grandes/CoraçãoGrande.gif",
+        "../static/gifs/grandes/DeBobeiraGrande.gif",
+        "../static/gifs/grandes/SonoGrande.gif",
+        "../static/gifs/grandes/ThugLifeGrande.gif",
+        "../static/gifs/grandes/TristeGrande.gif"
     ];
 
     let currentgifIndex = 0;

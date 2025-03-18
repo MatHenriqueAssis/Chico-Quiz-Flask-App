@@ -25,8 +25,8 @@ function irParaCategoria () {
 }
 
 function irParaHome() {
-    console.log("Botão de reinício clicado!"); // Para debug
-    window.location.href = "/"; // Confirme se isso funciona no console do navegador
+    console.log("Botão de reinício clicado!"); 
+    window.location.href = "/"; 
 }
 
 
@@ -96,11 +96,11 @@ function iniciarTemporizador() {
         
     
         if(tempoRestante === 30) {
-            changeFace("FalandoGif");
+            changeFace("FalandoPequeno");
         }
 
-        if(tempoRestante <= 20){
-            changeFace("AnsiedadeGif")
+        if(tempoRestante <= 10){
+            changeFace("NervosoPequeno")
         }
 
     let tempoTotal = tempoRestante;
@@ -117,15 +117,20 @@ function iniciarTemporizador() {
 function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
     const opcoes = document.querySelectorAll("#options-response button");
 
-    
+
+
     opcoes.forEach(opcao => {
         opcao.disabled = true;
-        if (opcao.innerText === respostaCorreta) {
-            opcao.classList.add("correct"); // Destaca a resposta correta
-        } 
-        
-        if (opcao.innerText === opcaoSelecionada && opcaoSelecionada !== respostaCorreta) {
-            opcao.classList.add("wrong");
+
+        // Se a opção selecionada for errada, apenas ela será destacada
+        if (opcao.innerText === opcaoSelecionada) {
+            if (opcaoSelecionada === respostaCorreta) {
+                opcao.classList.add("correct");
+                changeFace("FelizPequeno");
+            } else {
+                opcao.classList.add("wrong");
+                changeFace("choroPequeno");
+            }
         }
     });
 
@@ -196,7 +201,7 @@ function preloadGif(expression, callback) {
             callback();
         }
     const img = new Image();
-    img.src = `../static/gifs/${expression}.gif`;
+    img.src = `../static/gifs/pequenos${expression}.gif`;
     img.onload = () => {
         gifCache[expression] = img;
         callback();
@@ -214,11 +219,11 @@ function changeFace(expression) {
         chico.src = gifCache[expression].src;
     } else {
         console.warn(`GIF ${expression} ainda não carregado!`);
-        chico.src = `../static/gifs/${expression}.gif`;
+        chico.src = `../static/gifs/pequenos/${expression}.gif`;
     }
 }
 
-const gifList = ["FalandoGif", "AnsiedadeGif", "CoraçãoGif", "ThuglifeGif"];
+const gifList = ["FelizPequeno", "FalandoPequeno", "ChoroPequeno", "BobeiraPequeno"];
 
 // Pré-carregar todos os GIFs
 gifList.forEach(expression => preloadGif(expression));
@@ -241,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(chico) {
         const img = new Image();
-        img.src = "./gifs/InicioGif.gif";
+        img.src = "./gifs/pequenos/BobeiraPequeno.gif.gif";
         img.onload = () => {
             chico.src = img.src
         }
@@ -264,11 +269,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () 
+{
     const restartButton = document.getElementById("restart");
 
     if(restartButton) {
         restartButton.addEventListener("click", irParaHome);
+        document.addEventListener("keydown", function (event) {
+            switch (event.key) {
+                case "r":
+                    irParaHome();
+                    break
+            }
+        })
     }
     else{
         console.log("ERROOOOOOOOO")
@@ -283,14 +296,35 @@ document.addEventListener("keydown", function(event) {
     
     if(!opcoes.length) return;
     
-    const keyoptions = ["a", "b", "c", "d", "r"];
-    const index = keyoptions.indexOf(event.key);
-
-    if(index !== -1 && opcoes[index]) {
-        opcoes[index].click();
+    switch (event.key) {
+        case "a":
+            if (opcoes[0]) opcoes[0].click();
+            break;
+        case "q":
+            if (opcoes[0]) opcoes[0].click();
+            break;
+        case "b":
+            if (opcoes[1]) opcoes[1].click();
+            break;
+        case "w":
+            if (opcoes[1]) opcoes[1].click();
+            break;
+        case "c":
+            if (opcoes[2]) opcoes[2].click();
+            break;
+        case "e":
+            if (opcoes[2]) opcoes[2].click();
+            break;
+        case "d":
+            if (opcoes[3]) opcoes[3].click();
+            break;
+        case "t":
+            if (opcoes[3]) opcoes[3].click();
+            break;
+        case "r":
+            irParaHome();
+            break;
+        default:
+            break;
     }
-
-    if(event.key === "r") {
-        irParaHome();
-    }
-})
+});

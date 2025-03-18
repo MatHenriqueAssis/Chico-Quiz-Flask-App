@@ -55,11 +55,19 @@ document.addEventListener("DOMContentLoaded", function () {
         
         if (homeopcoes.length === 0) return;
         
-        const keyoptions = ["a", "b"];
-        const index = keyoptions.indexOf(event.key);
-
-        if (index !== -1 && homeopcoes[index]) {
-            homeopcoes[index].click();
+        switch(event.key) {
+            case "a":
+                if (homeopcoes[0]) homeopcoes[0].click();
+                break;
+            case "q":
+                if (homeopcoes[0]) homeopcoes[0].click();
+                break;
+            case "b":
+                if (homeopcoes[1]) homeopcoes[1].click();
+                break;
+            case "w":
+                if (homeopcoes[1]) homeopcoes[1].click();
+                break;
         }
     });
 });
