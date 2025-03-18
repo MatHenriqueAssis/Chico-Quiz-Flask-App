@@ -12,10 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const gifs = [
-        "../static/gifs/grandes/CoraçãoGrande.gif",
-        "../static/gifs/grandes/DeBobeiraGrande.gif",
         "../static/gifs/grandes/SonoGrande.gif",
-        "../static/gifs/grandes/ThugLifeGrande.gif",
         "../static/gifs/grandes/TristeGrande.gif"
     ];
 
