@@ -253,22 +253,6 @@ function changeFace(expression) {
     }
 }
 
-function telafinal() {
-    // Esconder qualquer GIF anterior
-    document.getElementById("chico-img").style.display = "none";
-
-    // Mostrar apenas o GIF final correspondente à pontuação
-    setTimeout(() => {
-        document.getElementById("chico-img").style.display = "block";
-        if (pontos <= 40) {
-            changeFace("ChoroPequeno");
-        } else if (pontos <= 80) {
-            changeFace("BobeiraPequeno");
-        } else if (pontos === 100) {
-            changeFace("FelizPequeno");
-        }
-    }, 100); // Pequeno delay para garantir a atualização
-}
 const gifList = ["FelizPequeno", "FalandoPequeno", "ChoroPequeno", "BobeiraPequeno", "NervosoPequeno"];
 
 // Pré-carregar todos os GIFs

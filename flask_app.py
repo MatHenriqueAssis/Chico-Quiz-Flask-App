@@ -3,6 +3,7 @@ import pandas as pd
 from flask_cors import CORS
 import random
 import os
+import foto_final as ff
 
 app = Flask(__name__)
 CORS(app)
@@ -31,6 +32,24 @@ def load_question():
     return df.to_dict(orient="records")
 
 questions_global = load_question()
+
+csv_path_parametros = os.path.join(os.path.dirname(__file__), "instances", "Parametros.csv")
+
+def initializa_csvparametros():
+    if not os.path.exists(csv_path_parametros):
+        df = pd.DataFrame(columns=["tempo_de_resposta", "quantidade_de_perguntas"])
+        df.to_csv(csv_path_parametros, index=False)
+
+def load_parametros():
+    df = pd.read_csv(csv_path_parametros)
+    return df.to_dict(orient="records")
+
+parametros_global = load_parametros()
+parametros_global = parametros_global[0]
+
+@app.route('/parametros', methods=['GET'])
+def get_parametros():
+    return jsonify(parametros_global)
 
 '''
     list_question= random.choice(questions)
@@ -85,6 +104,11 @@ def acerto():
 @app.route("/erro")
 def erro():
     return render_template('erro.html')
+
+@app.route('/final_quiz')
+def foto_final():
+    ff.capture_and_send_image()
+    return render_template('index.html')    
 
 @app.route('/perguntas/<categoria>', methods=['GET'])
 def perguntas_categoria(categoria):
