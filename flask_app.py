@@ -78,6 +78,13 @@ def categoria():
 def quiz():
     return render_template('quiz.html')
 
+@app.route("/acerto")
+def acerto():
+    return render_template('acerto.html')
+
+@app.route("/erro")
+def erro():
+    return render_template('erro.html')
 
 @app.route('/perguntas/<categoria>', methods=['GET'])
 def perguntas_categoria(categoria):

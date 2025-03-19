@@ -48,13 +48,13 @@ body::before {
 }
 #espaco-chico{
     width: 100%;
-    padding: 10%;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 #Character{
-    width: 70%;
+    width: 80%;
     display: flex;
     position: relative;
 }
@@ -73,7 +73,7 @@ body::before {
 }
 
 .buttons button{
-    min-width: 300px;
+    min-width: 400px;
     padding: 15px 5px;
     display: flex;
     align-items: center;
@@ -81,9 +81,9 @@ body::before {
     border: 2px solid #000;
     cursor: pointer;
     position: relative;
-    transition: 0.3s;
     border-radius: 3px;
     background-color: #DBDBDB;
+    font-size: 24px;
     color: #0B3003;
 }
 

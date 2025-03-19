@@ -6,7 +6,8 @@ let perguntas = []; // 🔹 Armazena as perguntas globalmente
 const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
 let tempoTotal = 30;
-
+let acertosconsecutivos = 0;
+let errosconsecutivos = 0;
 
 const API_BASE_URL = window.location.hostname === "localhost"
     ? "http://127.0.0.1:5000/perguntas"
@@ -24,6 +25,11 @@ const irParaQuiz = async (categoria) => {
 
 function irParaCategoria () {
     window.location.href = "categoria"
+
+}
+
+function irParaSelfie () {
+    window.location.href = "selfie"
 
 }
 
@@ -123,40 +129,55 @@ function iniciarTemporizador() {
 function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
     const opcoes = document.querySelectorAll("#options-response button");
 
-
-
     opcoes.forEach(opcao => {
         opcao.disabled = true;
 
         // Se a opção selecionada for errada, apenas ela será destacada
         if (opcao.innerText === opcaoSelecionada) {
-            if (opcaoSelecionada === respostaCorreta) {
+            if (opcaoSelecionada.slice(3) === respostaCorreta) {
                 opcao.classList.add("correct");
                 changeFace("FelizPequeno");
+                acertosconsecutivos++;
+                errosconsecutivos = 0;
             } else {
                 opcao.classList.add("wrong");
-                changeFace("choroPequeno");
+                changeFace("ChoroPequeno");
+                errosconsecutivos++;
+                acertosconsecutivos = 0;
             }
         }
     });
 
+    sessionStorage.setItem("proximaPergunta", index + 1)
+
     // Adiciona pontos apenas se o usuário acertar
-    if (opcaoSelecionada === respostaCorreta) {
+    if (opcaoSelecionada.slice(3) === respostaCorreta) {
         pontos = Math.min(pontos + 20, 100);
     }
 
-
-
     atualizarPontuacao();
 
-    // Remove os efeitos após 1 segundo e carrega a próxima pergunta
+    if(acertosconsecutivos >= 3) {
+        setTimeout(() =>{
+            window.location.href = "acerto"
+        }, 500);
+        return;
+    }
+
+    if(errosconsecutivos >= 3) {
+        setTimeout(() =>{
+            window.location.href = "erro"
+        }, 500);
+        return;
+    }
+
     setTimeout(() => {
         opcoes.forEach(opcao => {
             opcao.classList.remove("correct", "wrong");
             opcao.disabled = false;
         });
         passarParaProximaPergunta();
-    }, 2000);   
+    }, 2000); 
 }
 
 function tempoEsgotado() {
@@ -178,7 +199,6 @@ async function passarParaProximaPergunta() {
         document.getElementById("quiz").innerHTML = "<h2>Quiz Finalizado!</h2>";
         
         const restartButton = document.getElementById("restart");
-        telafinal();
         restartButton.style.display = "block";
     }
 
@@ -211,7 +231,7 @@ function preloadGif(expression, callback) {
             callback();
         }
     const img = new Image();
-    img.src = `../static/gifs/pequenos${expression}.gif`;
+    img.src = `./static/gifs/pequenos/${expression}.gif`;
     img.onload = () => {
         gifCache[expression] = img;
         callback();
@@ -229,7 +249,7 @@ function changeFace(expression) {
         chico.src = gifCache[expression].src;
     } else {
         console.warn(`GIF ${expression} ainda não carregado!`);
-        chico.src = `../static/gifs/pequenos/${expression}.gif`;
+        chico.src = `./gifs/pequenos/${expression}`;
     }
 }
 
@@ -249,7 +269,7 @@ function telafinal() {
         }
     }, 100); // Pequeno delay para garantir a atualização
 }
-const gifList = ["FelizPequeno", "FalandoPequeno", "ChoroPequeno", "BobeiraPequeno"];
+const gifList = ["FelizPequeno", "FalandoPequeno", "ChoroPequeno", "BobeiraPequeno", "NervosoPequeno"];
 
 // Pré-carregar todos os GIFs
 gifList.forEach(expression => preloadGif(expression));
@@ -272,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(chico) {
         const img = new Image();
-        img.src = "./gifs/pequenos/BobeiraPequeno.gif.gif";
+        img.src = "./gifs/pequenos/BobeiraPequeno.gif";
         img.onload = () => {
             chico.src = img.src
         }
