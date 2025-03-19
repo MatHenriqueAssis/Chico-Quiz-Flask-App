@@ -4,6 +4,12 @@ from flask_cors import CORS
 import random
 import os
 import foto_final as ff
+import serial
+
+portal_serial = "COM7"
+
+baud_rate = 9600
+resposta_usuario = []
 
 app = Flask(__name__)
 CORS(app)
@@ -108,7 +114,7 @@ def erro():
 @app.route('/final_quiz')
 def foto_final():
     ff.capture_and_send_image()
-    return render_template('index.html')    
+    return render_template('telafinal.html')    
 
 @app.route('/perguntas/<categoria>', methods=['GET'])
 def perguntas_categoria(categoria):

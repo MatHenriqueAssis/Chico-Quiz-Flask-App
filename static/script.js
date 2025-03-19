@@ -126,13 +126,12 @@ function iniciarTemporizador() {
     }, 1000);
 }
 
-function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
+function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
     const opcoes = document.querySelectorAll("#options-response button");
 
     opcoes.forEach(opcao => {
         opcao.disabled = true;
 
-        // Se a opção selecionada for errada, apenas ela será destacada
         if (opcao.innerText === opcaoSelecionada) {
             if (opcaoSelecionada.slice(3) === respostaCorreta) {
                 opcao.classList.add("correct");
@@ -148,28 +147,11 @@ function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
         }
     });
 
-    sessionStorage.setItem("proximaPergunta", index + 1)
-
-    // Adiciona pontos apenas se o usuário acertar
     if (opcaoSelecionada.slice(3) === respostaCorreta) {
         pontos = Math.min(pontos + 20, 100);
     }
 
     atualizarPontuacao();
-
-    if(acertosconsecutivos >= 3) {
-        setTimeout(() =>{
-            window.location.href = "acerto"
-        }, 500);
-        return;
-    }
-
-    if(errosconsecutivos >= 3) {
-        setTimeout(() =>{
-            window.location.href = "erro"
-        }, 500);
-        return;
-    }
 
     setTimeout(() => {
         opcoes.forEach(opcao => {
@@ -177,8 +159,11 @@ function verificarResposta(opcaoSelecionada, respostaCorreta,index) {
             opcao.disabled = false;
         });
         passarParaProximaPergunta();
-    }, 2000); 
+    }, 2000);
 }
+
+
+
 
 function tempoEsgotado() {
     passarParaProximaPergunta();
@@ -197,7 +182,10 @@ async function passarParaProximaPergunta() {
         exibirPergunta(indexPergunta);
     } else {
         document.getElementById("quiz").innerHTML = "<h2>Quiz Finalizado!</h2>";
-        
+        window.location.href = "/final_quiz";
+        setTimeout(() =>{
+            window.location.href = "/";
+        }, 15000)
         const restartButton = document.getElementById("restart");
         restartButton.style.display = "block";
     }
@@ -318,6 +306,14 @@ document.addEventListener("DOMContentLoaded", function ()
         console.log("ERROOOOOOOOO")
     }
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname.includes("telafinal.html")) {
+        setTimeout(() => {
+            window.location.href = "/";
+        }, 15000); // 15 segundos
+    }
+});
 
 document.addEventListener("keydown", function(event) {
     const quizopcoes = document.querySelectorAll("#options-response button");

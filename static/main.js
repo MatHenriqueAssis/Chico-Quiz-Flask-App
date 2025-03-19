@@ -62,10 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
             case "q":
                 if (homeopcoes[0]) homeopcoes[0].click();
                 break;
-            case "b":
+            case "r":
                 if (homeopcoes[1]) homeopcoes[1].click();
                 break;
-            case "w":
+            case "r":
                 if (homeopcoes[1]) homeopcoes[1].click();
                 break;
         }
