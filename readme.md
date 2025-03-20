@@ -1,4 +1,4 @@
-# Quiz do Chico [*Nome temporário*]
+# Chico Sabido
 
 #### Menu
 
