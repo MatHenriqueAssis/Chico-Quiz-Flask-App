@@ -14,13 +14,20 @@ const API_BASE_URL = window.location.hostname === "localhost"
     : "https://jogodochico.pythonanywhere.com/perguntas";
 
 
-const irParaQuiz = async (categoria) => {
+const irParaQuiz = async (categoria, event) => {
 
-    localStorage.setItem("categoriaSelecionada", categoria);
-    window.location.href = "quiz"
+
+    event.target.classList.add('clicked');
+
+    setTimeout(async () => {
+        localStorage.setItem("categoriaSelecionada", categoria);
+        window.location.href = "quiz"
     
 
-    await loadQuestion(categoria)
+        await loadQuestion(categoria)
+    }, 2000)
+
+    
 }
 
 function irParaCategoria () {
@@ -161,8 +168,6 @@ function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
         passarParaProximaPergunta();
     }, 2000);
 }
-
-
 
 
 function tempoEsgotado() {

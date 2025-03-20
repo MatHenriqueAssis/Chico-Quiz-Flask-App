@@ -23,11 +23,11 @@
     <div class="initial">
         <div class="buttons">
             <button id="play" class="player" onclick="irParaCategoria()">Jogar</button>
-            <button id="play" class="player" onclick="irParaSelfie()">Self com o Chico</button>
+            <button id="play" class="player button-ghost" onclick="irParaSelfie()">Self com o Chico</button>
         </div>
     </div>
-    <script src="../static/script.js"></script>
-    <script src="../static/main.js" defer></script> 
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script> 
 </body>
 </html>
 
