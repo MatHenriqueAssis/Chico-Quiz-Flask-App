@@ -15,7 +15,7 @@ def generate_heatmap(frame):
     #blurred_image = cv2.GaussianBlur(gray_image, (25, 25), 0)
 
     # Gerar o mapa de calor a partir da imagem desfocada
-    #heatmap_image = cv2.applyColorMap(gray_image, cv2.COLORMAP_JET)
+    heatmap_image = cv2.applyColorMap(gray_image, cv2.COLORMAP_JET)
     return gray_image
 
 def capture_and_send_image():
