@@ -12,7 +12,7 @@
 </p>
 
 ## 💡 Sobre o Projeto
-<p>🗨🦀 O <b>Chico Sabido</b> é um jogo interativo criado em parceria entre a <b>Faculdade SENAC Pernambuco</b>, alunos de <b>Análise e Desenvolvimento de Sistemas</b> e o <b>SEBRAE</b>. Apresentado no <b>Rec’n’Play 2024</b> com sensores que emitiam reações, Chico retorna agora com um <b>quiz educativo</b> e o <b>Chiquito (joystick) exclusivo</b>. Solicitado pelo SEBRAE, o projeto amplia a experiência interativa, permitindo que jogadores testem conhecimentos enquanto Chico reage dinamicamente, além de oferecer um modo selfie para reações divertidas. </p>
+<p>🗨🦀 O <b>Chico Sabido</b> é um jogo interativo criado em parceria entre a <b>Faculdade SENAC Pernambuco</b>, alunos de <b>Análise e Desenvolvimento de Sistemas</b> e o <b>SEBRAE</b>. Apresentado no <b>Rec’n’Play 2024</b> com sensores que emitiam reações, Chico retorna agora com um <b>quiz educativo</b> e o <b>Chiquito, seu joystick exclusivo</b>. Solicitado pelo SEBRAE, o projeto amplia a experiência interativa, permitindo que jogadores testem conhecimentos enquanto Chico reage dinamicamente, além de oferecer um modo selfie para reações divertidas. </p>
 <p> 📌 <b>Parceiro:</b> SEBRAE</p>
 <P>👨‍💻 <b>Desenvolvido por:</b> Professores e Alunos do curso de Análise e Desenvolvimento de Sistemas - Faculdade SENAC Pernambuco</P>
 <p> 📅 <b>Duração do projeto:</b> 27/02/2025 - 22/03/2025 </p>
