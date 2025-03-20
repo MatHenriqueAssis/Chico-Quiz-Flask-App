@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2b751a;
+    position: relative;
+    z-index: 0;
+}
+#finalChico {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+#espaco-chico{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#gifResultado{
+    width: 100%;
+    height: 60vh;
+    top: 20%;
+    right: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+#mensagemTitulo {
+    margin-top: 100px;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+#mensagem {
+    margin-top: 100px;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+#mensagem2{
+    margin-top: 100px;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+.overlay-img {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100vh; 
+    object-fit: cover; 
+    z-index: -1; 
+    opacity: 0.2; 
+}

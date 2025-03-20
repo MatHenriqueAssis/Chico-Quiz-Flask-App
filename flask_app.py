@@ -113,7 +113,7 @@ def erro():
 
 @app.route('/final_quiz')
 def foto_final():
-    ff.capture_and_send_image()
+    # ff.capture_and_send_image()
     return render_template('telafinal.html')    
 
 @app.route('/perguntas/<categoria>', methods=['GET'])

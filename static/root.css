@@ -1,0 +1,70 @@
+:root{
+
+    /* ////// FONTES ////// */ 
+
+    --fonte-principal: 'FonteTitulos', sans-serif; 
+    --fonte-regular: 'FonteParagrafos', sans-serif; 
+
+    /* ////// PROPRIEDADES GLOBAIS ////// */
+
+    --fontes-weight: 500; 
+    --fontes-style: normal;
+    --fontes-line-height: normal;
+    --fontes-letter-spacing: 2.5rem;
+
+    /* /// TÍTULOS PRINCIPAL /// */
+
+            /* H1 */
+    --principal-h1-size:5rem; 
+
+            /* H2 */
+    --principal-h2-size: 4rem;
+ 
+            /* H3 */    
+    --principal-h3-size: 3rem;  
+
+            /* H4 */    
+    --principal-h4-size: 2.5rem;
+
+            /* H5 */    
+    --principal-h5-size: 2rem; 
+
+
+    /* /// TÍTULOS REGULAR /// */
+
+    --regular-h1-size: 5rem;
+
+            /* H2 */
+    --regular-h2-size: 4rem;  
+ 
+            /* H3 */    
+    --regular-h3-size: 3rem;
+
+            /* H4 */    
+    --regular-h4-size: 2.5rem;
+
+            /* H5 */    
+    --regular-h5-size: 2rem;
+
+    /* /// PARÁGRAFOS GLOBAIS  /// */
+
+    --principal-p-size: 1.5rem; 
+
+    --regular-p-size:1.5rem; 
+
+
+/* //////////// CORES ////////////*/
+
+            /* bg*/ 
+
+--primary-color-BG-500: #08450A; 
+
+--primary-color-text-1-900: ; 
+
+--primary-color-text-2-800: ; 
+
+--neutral-color-white: ; 
+
+--success-color-border-900: ; 
+
+}

@@ -6,18 +6,39 @@ let perguntas = []; // 🔹 Armazena as perguntas globalmente
 const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
 let tempoTotal = 30;
-let acertosconsecutivos = 0;
-let errosconsecutivos = 0;
+
+let acertos = parseInt(localStorage.getItem("acertosconsecutivos")) || 0;
+let erros = parseInt(localStorage.getItem("errosconsecutivos")) || 0;
+let skips = parseInt(localStorage.getItem("respostas_skip")) || 0;
 
 const API_BASE_URL = window.location.hostname === "localhost"
     ? "http://127.0.0.1:5000/perguntas"
     : "https://jogodochico.pythonanywhere.com/perguntas";
 
 
+
+const gerarIdPessoa = () => {
+    let idPessoa = localStorage.getItem("id_pessoa");
+
+    if (!idPessoa) {
+        let ultimoId = localStorage.getItem("ultimo_id_pessoa") || 0;
+        idPessoa = parseInt(ultimoId) + 1;
+        localStorage.setItem("id_pessoa", idPessoa);
+        localStorage.setItem("ultimo_id_pessoa", idPessoa);
+        console.log("Novo ID gerado:", idPessoa);
+    } else {
+        console.log("ID já existente:", idPessoa);
+    }
+
+    return idPessoa;
+};
+
 const irParaQuiz = async (categoria) => {
 
+    iniciarNovoJogo();
     localStorage.setItem("categoriaSelecionada", categoria);
-    window.location.href = "quiz"
+    
+    window.location.href = "quiz";
     
 
     await loadQuestion(categoria)
@@ -59,12 +80,6 @@ async function exibirPergunta(index = 0) {
         perguntas = await carregarPerguntas();
     }
 
-    if (index >= perguntas.length) {
-        document.getElementById("quiz").innerHTML = "<h2>Quiz Finalizado</h2>";
-
-        return;
-    }
-
     const perguntaAtual = perguntas[index];
     document.getElementById("pergunta").textContent = perguntaAtual.Pergunta;
 
@@ -102,6 +117,8 @@ function iniciarTemporizador() {
     timer = setInterval(() => {
         if(tempoRestante <= 0) {
             clearInterval(timer);
+            skips++
+            localStorage.setItem("respostas_skip", skips);
             passarParaProximaPergunta();
             return
         }
@@ -136,13 +153,13 @@ function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
             if (opcaoSelecionada.slice(3) === respostaCorreta) {
                 opcao.classList.add("correct");
                 changeFace("FelizPequeno");
-                acertosconsecutivos++;
-                errosconsecutivos = 0;
+                acertos++;
+                localStorage.setItem("acertosconsecutivos", acertos);
             } else {
                 opcao.classList.add("wrong");
                 changeFace("ChoroPequeno");
-                errosconsecutivos++;
-                acertosconsecutivos = 0;
+                erros++;
+                localStorage.setItem("errosconsecutivos", erros);
             }
         }
     });
@@ -151,6 +168,7 @@ function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
         pontos = Math.min(pontos + 20, 100);
     }
 
+    localStorage.setItem("pontos", pontos);
     atualizarPontuacao();
 
     setTimeout(() => {
@@ -181,12 +199,11 @@ async function passarParaProximaPergunta() {
     if (indexPergunta < perguntas.length) {
         exibirPergunta(indexPergunta);
     } else {
-        document.getElementById("quiz").innerHTML = "<h2>Quiz Finalizado!</h2>";
         window.location.href = "/final_quiz";
         setTimeout(() =>{
             window.location.href = "/";
         }, 15000)
-        const restartButton = document.getElementById("restart");
+    
         restartButton.style.display = "block";
     }
 
@@ -219,7 +236,7 @@ function preloadGif(expression, callback) {
             callback();
         }
     const img = new Image();
-    img.src = `./static/gifs/pequenos/${expression}.gif`;
+    img.src = `/static/gifs/pequenos/${expression}.gif`;
     img.onload = () => {
         gifCache[expression] = img;
         callback();
@@ -237,9 +254,47 @@ function changeFace(expression) {
         chico.src = gifCache[expression].src;
     } else {
         console.warn(`GIF ${expression} ainda não carregado!`);
-        chico.src = `./gifs/pequenos/${expression}`;
+        chico.src = `/static/gifs/pequenos/${expression}`;
     }
 }
+
+function finalizarQuiz() {
+    salvarLog();
+    localStorage.setItem("pontos", pontos); // Salva a pontuação
+    window.location.href = "/final_quiz"; // Redireciona para a tela final
+}
+
+function salvarLog() {
+    const idPessoa = localStorage.getItem("id_pessoa");
+    let logs = JSON.parse(localStorage.getItem("logs")) || {};
+    
+    logs[idPessoa] = {
+        acertos,
+        erros,
+        skips,
+        horario: new Date().toISOString()
+    };
+    
+    localStorage.setItem("logs", JSON.stringify(logs));
+    console.log("Log atualizado:", logs);
+}
+
+const iniciarNovoJogo = () => {
+    localStorage.removeItem("id_pessoa"); // Garante um novo jogador
+    const idPessoa = gerarIdPessoa();
+
+    acertos = 0;
+    erros = 0;
+    skips = 0;
+
+    localStorage.setItem("acertosconsecutivos", acertos);
+    localStorage.setItem("errosconsecutivos", erros);
+    localStorage.setItem("respostas_skip", skips);
+    
+    console.log("Novo jogo iniciado para ID:", idPessoa);
+    exibirPergunta();
+};
+
 
 const gifList = ["FelizPequeno", "FalandoPequeno", "ChoroPequeno", "BobeiraPequeno", "NervosoPequeno"];
 
@@ -264,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(chico) {
         const img = new Image();
-        img.src = "./gifs/pequenos/BobeiraPequeno.gif";
+        img.src = "/static/gifs/pequenos/BobeiraPequeno.gif";
         img.onload = () => {
             chico.src = img.src
         }
@@ -313,6 +368,10 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/";
         }, 15000); // 15 segundos
     }
+});
+
+window.addEventListener("beforeunload", () => {
+    salvarLog();
 });
 
 document.addEventListener("keydown", function(event) {
