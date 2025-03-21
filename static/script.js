@@ -33,7 +33,10 @@ const gerarIdPessoa = () => {
     return idPessoa;
 };
 
-const irParaQuiz = async (categoria) => {
+const irParaQuiz = async (categoria, event) => {
+
+    event.target.classList.add('clicked');
+
     try {
         const response = await fetch(`/perguntas/${categoria}`);
         const data = await response.json();
@@ -49,9 +52,11 @@ const irParaQuiz = async (categoria) => {
         const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
         selecaoMenu.play();
 
-        setTimeout(() => {
-            window.location.href = "quiz"; // Redireciona para a página do quiz
-        }, 2000);
+        setTimeout(async () => {
+            localStorage.setItem("categoriaSelecionada", categoria);
+            window.location.href = "quiz"
+            await loadQuestion(categoria)
+        }, 2000)
         
     } catch (error) {
         console.error("Erro na requisição de perguntas:", error);
