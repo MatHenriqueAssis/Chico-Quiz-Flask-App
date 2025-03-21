@@ -106,6 +106,8 @@ function iniciarTemporizador() {
     let timerCircle = document.getElementById("timer-circle");
     let timerText = document.getElementById("timer-text");
 
+    const timerpergunta = new Audio('cronometro-pergunta.mp3')
+    timerpergunta.playbackRate = 0.5
     
     clearInterval(timer);
     tempoRestante = tempoTotal // Reinicia o tempo
@@ -130,6 +132,7 @@ function iniciarTemporizador() {
 
         if(tempoRestante <= 10){
             changeFace("NervosoPequeno")
+            timerpergunta.play();
         }
 
         let progresso =  CIRCUNFERENCIA * (tempoRestante / tempoTotal);
@@ -146,6 +149,10 @@ function iniciarTemporizador() {
 function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
     const opcoes = document.querySelectorAll("#options-response button");
 
+    //sons
+    const somcorrect = new Audio("/static/audios/opcao-correta.mp3");
+    const somwrong = new Audio('/static/audios/opcao-incorreta.mp3')
+
     opcoes.forEach(opcao => {
         opcao.disabled = true;
 
@@ -155,11 +162,15 @@ function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
                 changeFace("FelizPequeno");
                 acertos++;
                 localStorage.setItem("acertosconsecutivos", acertos);
+
+                somcorrect.play();
             } else {
                 opcao.classList.add("wrong");
                 changeFace("ChoroPequeno");
                 erros++;
                 localStorage.setItem("errosconsecutivos", erros);
+                
+                somwrong.play();
             }
         }
     });

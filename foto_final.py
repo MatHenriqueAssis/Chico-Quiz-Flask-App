@@ -10,13 +10,17 @@ SERVER_URL = "https://visao.pythonanywhere.com/upload_imagechicosabido"
 capture_interval = 1  # Tempo entre as capturas em segundos
 
 def generate_heatmap(frame):
-    # Converter para escala de cinza e aplicar blurring para ocultar detalhes
+    # Converter para escala de cinza
     gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    #blurred_image = cv2.GaussianBlur(gray_image, (25, 25), 0)
+    
+    # (Opcional) Aplicar desfoque para suavizar a imagem
+    # blurred_image = cv2.GaussianBlur(gray_image, (25, 25), 0)
 
-    # Gerar o mapa de calor a partir da imagem desfocada
-    #heatmap_image = cv2.applyColorMap(gray_image, cv2.COLORMAP_JET)
-    return gray_image
+    # Gerar o mapa de calor a partir da imagem em escala de cinza
+    heatmap_image = cv2.applyColorMap(gray_image, cv2.COLORMAP_JET)
+
+    # Retorna a imagem com o mapa de calor
+    return heatmap_image
 
 def capture_and_send_image():
     # Inicializar a câmera
