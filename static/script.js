@@ -37,15 +37,30 @@ const irParaQuiz = async (categoria) => {
 
     iniciarNovoJogo();
     localStorage.setItem("categoriaSelecionada", categoria);
+    const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3")  
+     selecaoMenu.play();
+    setTimeout(() =>{
+       
+        window.location.href = "quiz";
+    }, 2000)
+
     
-    window.location.href = "quiz";
     
 
     await loadQuestion(categoria)
 }
 
 function irParaCategoria () {
-    window.location.href = "categoria"
+    const selecionarjogar = new Audio('/static/audios/selecionou-jogar.mp3');
+    selecionarjogar.playbackRate = 1
+    selecionarjogar.play();
+    setTimeout(() => {
+        window.location.href = "categoria";
+    }, 1000)
+    
+
+    
+    
 
 }
 
@@ -106,7 +121,7 @@ function iniciarTemporizador() {
     let timerCircle = document.getElementById("timer-circle");
     let timerText = document.getElementById("timer-text");
 
-    const timerpergunta = new Audio('cronometro-pergunta.mp3')
+    const timerpergunta = new Audio('/static/audios/cronometro-perguntas.mp3')
     timerpergunta.playbackRate = 0.5
     
     clearInterval(timer);
@@ -211,10 +226,6 @@ async function passarParaProximaPergunta() {
         exibirPergunta(indexPergunta);
     } else {
         window.location.href = "/final_quiz";
-        setTimeout(() =>{
-            window.location.href = "/";
-        }, 15000)
-    
         restartButton.style.display = "block";
     }
 
@@ -297,6 +308,7 @@ const iniciarNovoJogo = () => {
     acertos = 0;
     erros = 0;
     skips = 0;
+    
 
     localStorage.setItem("acertosconsecutivos", acertos);
     localStorage.setItem("errosconsecutivos", erros);
@@ -305,6 +317,18 @@ const iniciarNovoJogo = () => {
     console.log("Novo jogo iniciado para ID:", idPessoa);
     exibirPergunta();
 };
+
+function salvarfotosLog() {
+    const idPessoa = localStorage.getItem("id_pessoa");
+    let logs = JSON.parse(localStorage.getItem("logs")) || {};
+    
+    logs[idPessoa] = {
+        horario: new Date().toISOString()
+    };
+    
+    localStorage.setItem("logs", JSON.stringify(logs));
+    console.log("Log atualizado:", logs);
+}
 
 
 const gifList = ["FelizPequeno", "FalandoPequeno", "ChoroPequeno", "BobeiraPequeno", "NervosoPequeno"];

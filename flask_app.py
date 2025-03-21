@@ -57,10 +57,9 @@ parametros_global = parametros_global[0]
 def get_parametros():
     return jsonify(parametros_global)
 
-'''
-    list_question= random.choice(questions)
-    return jsonify(question)
-'''
+#    list_question= random.choice(questions)
+#    return jsonify(question)
+
 @app.route('/log_jogo', methods=['POST'])
 def log_jogo():
     data = request.json
@@ -103,9 +102,10 @@ def categoria():
 def quiz():
     return render_template('quiz.html')
 
-@app.route("/acerto")
-def acerto():
-    return render_template('acerto.html')
+@app.route("/fotofinal")
+def fotofinal():
+    ff.capture_and_send_image()
+    return render_template('foto_final.html')
 
 @app.route("/erro")
 def erro():
@@ -113,18 +113,25 @@ def erro():
 
 @app.route('/final_quiz')
 def foto_final():
-    ff.capture_and_send_image()
     return render_template('telafinal.html')    
 
 @app.route('/perguntas/<categoria>', methods=['GET'])
 def perguntas_categoria(categoria):
     questions = load_question()
-    perguntas_filtradas = [p for p in questions if p['Categoria'].lower() == categoria.lower()]
+    perguntas_filtradas = [p for p in questions if p['Categoria'].strip().lower() == categoria.lower()]
     
     if not perguntas_filtradas:
         return jsonify({"erro": "Categoria não encontrada ou sem perguntas."}), 404
     
-    return jsonify(perguntas_filtradas)
+     # Embaralha a lista de perguntas
+    random.shuffle(perguntas_filtradas)
+
+    # Seleciona apenas 5 perguntas
+    perguntas_selecionadas = perguntas_filtradas[:5]
+
+    print("Perguntas embaralhadas e selecionadas:", perguntas_selecionadas)  # Debug no terminal
+
+    return jsonify(perguntas_selecionadas)
 
 @app.route('/')
 def home():

@@ -1,3 +1,23 @@
+@font-face {
+        font-family: FonteTitulos;
+        src: url('../static/fontes/Unnamed8x16Pixel.woff2') format('woff2'),
+             url('../static/fontes/Unnamed8x16Pixel.woff') format('woff'),
+             url('../static/fontes/Unnamed8x16PixelBitmapFont.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+@font-face {
+        font-family: FonteParagrafos;
+        src: url('../static/fontes/battlenet.woff2') format('woff2')
+             url('../static/fontes/battlenet.woff') format('woff')
+             url('../static/fontes/battlenet.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+
+}
+
+
 :root{
 
     /* ////// FONTES ////// */ 

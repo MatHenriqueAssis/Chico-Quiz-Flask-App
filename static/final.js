@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const mensagem2 = document.getElementById("mensagem2")
     const mensagemTitulo = document.getElementById("mensagemTitulo");
     const gif = document.getElementById("gifResultado");
+    const parabens = new Audio("/static/audios/Parabens-acertou.mp3");
+    const metade = new Audio("/static/audios/acertou-metade.wav");
+    const menos2 = new Audio("/static/audios/Acertou-2-ou-nenhuma.mp3");
 
     // Define mensagens e GIFs baseados na pontuação
     if (pontuacao === 100) {
@@ -13,16 +16,19 @@ document.addEventListener("DOMContentLoaded", function () {
         mensagem.innerText = "O chico ficou apaixonado pelo seu desempenho! S2";
         mensagem2.innerText = "Espero que você tenha se divertido <3"
         gif.src = "/static/gifs/grandes/CoracaoGrande.gif";
+        parabens.play();
     } else if (pontuacao > 40 && pontuacao <= 80) {
         mensagemTitulo.innerText = `Muito bem, você fez ${pontuacao} pontos!`
         mensagem.innerText = "O chico está feliz, mas ele está torcendo para você acertar todas da próxima vez";
         mensagem2.innerText = "Espero que você tenha se divertido"
         gif.src = "/static/gifs/grandes/ThugLifeGrande.gif";
+        metade.play();
     } else{
         mensagemTitulo.innerText = `Que pena, você fez ${pontuacao}`;
         mensagem.innerText = "O Chico está triste, mas ele acredita no seu potencial!"
         mensagem2.innerText = "Vamos jogar novamente :D";
         gif.src = "/static/gifs/grandes/DeBobeiraGrande.gif";
+        menos2.play();
     }
 
     setTimeout(() => {
@@ -30,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 500);
 
     setTimeout(() => {
-        window.location.href = "/";
-    }, 15000);
+        window.location.href = "/fotofinal";
+    }, 10000);
 })
 
 function enviarLogJogo() {
@@ -89,13 +95,13 @@ function enviarLogJogo() {
     });
 }
 
-function calcularTempoTotal(horario_inicio) {
+function calcularTempoTotal(horario_inicio, horario_fim_jogo) {
     if (!horario_inicio) {
         console.error("Erro: horário de início do jogo não encontrado no localStorage.");
         return null;
     }
     const inicioDate = new Date(horario_inicio);
-    const fim = new Date(); // Captura o horário atual como fim do jogo
+    const fim = new Date(horario_fim_jogo); // Captura o horário atual como fim do jogo
     const tempoTotalMs = fim - inicioDate; // Diferença em milissegundos
     const tempoTotalSegundos = Math.floor(tempoTotalMs / 1000); // Converte para segundos
 

@@ -7,7 +7,7 @@ from flask import jsonify
 
 # Configurações
 SERVER_URL = "https://visao.pythonanywhere.com/upload_imagechicosabido"
-capture_interval = 1  # Tempo entre as capturas em segundos
+capture_interval = 7  # Tempo entre as capturas em segundos
 
 def generate_heatmap(frame):
     # Converter para escala de cinza
