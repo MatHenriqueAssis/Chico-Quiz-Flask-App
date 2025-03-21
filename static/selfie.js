@@ -22,6 +22,7 @@ chico_love_button.addEventListener('click', () => {
     chico_love.style.display = 'block';
     baseFunction()
 });
+
 chico_thug_button.addEventListener('click', () => {
     chico_thug.style.display = 'block';
     baseFunction()

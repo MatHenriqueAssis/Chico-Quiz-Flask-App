@@ -28,10 +28,10 @@ body::before {
 
 #chico{
     position: absolute;
-    top: 43%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 45%; 
+    max-width: 80%; 
     height: auto; 
     transition: all ease .5s;
 }
@@ -46,16 +46,24 @@ body::before {
 }
 
 
+
 .container-choice{
-    position: absolute;
-    background-color: #00000077;
-    inset: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    gap: 20rem;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container-choice h2{
+    font-size: 2rem;
     color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: var(--font-alt-videotype);
 }
 
 .buttons{
@@ -64,21 +72,24 @@ body::before {
     gap: 12rem;
 }
 
-.button-ghost{
+/* .button-ghost{
     background-color: transparent !important;
     color: #fff !important;
     border: 2px solid #fff !important;
-}
+} */
 
 .buttons button{
     position: relative;
     padding: 1.4rem;
-    font-size: 1.3rem;
+    font-size: var(--regular-p-size);
+    font-family: var(--font-alt-videotype);
     color: #035A51;
     cursor: pointer;
     border: none;
     transition: .3s;
     border: 2px solid #01332E;
+    border-radius: 8px;
+    width: 300px;
 }
 
 .buttons button:hover{
@@ -90,11 +101,11 @@ body::before {
 
 .reaction{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 80%; 
-    height: auto; 
+    top: 80% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 300px !important;  /* Ou um tamanho fixo para testar */
+    height: auto !important;
     transition: all ease .5s;
     display: none;
 }

@@ -70,3 +70,11 @@ body {
     z-index: -1; 
     opacity: 0.2; 
 }
+
+#texto{
+    padding: 16px 12px;
+    border: 8px solid #87c269;
+    border-radius: 4px;
+    background-color: #fff !important;
+    text-align: center;
+}

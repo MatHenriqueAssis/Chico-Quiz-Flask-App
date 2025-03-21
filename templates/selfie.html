@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/root.css">
     <link rel="stylesheet" href="/static/selfies.css">
     <title>Selfie</title>
 </head>
 <body>
     <div class="container">
-         <img id="chico" src="../static/imgs/chico.svg" alt=""> 
-         <img id="chico-boca" src="../static/imgs/boca-stand.svg" alt="">
+         <img id="chico" src="../static/gifs/pequenos/BobeiraPequeno.gif" alt="">
 
          <img id="chico-coracao" class="reaction" src="../static/imgs/CoraçãoGrande.gif" alt="chico apaixonado">
          <img id="chico-thug" class="reaction" src="../static/imgs/ThugLifeGrande.gif" alt="chico thug life">
@@ -17,11 +17,11 @@
 
     <div class="container-choice">
 
-        <h2>Escolha uma pose do chico para você tirar a selfie</h2>
+        <h2>Escolha uma pose do chico para você tirar uma foto bem bacana #Ch1coSabido</h2>
 
         <div class="buttons">
-            <button id="chico_love_button" class="foto" onclick="irParaChicoApaixonado()">Chico Apaixonado</button>
-            <button id="chico_thug_button" class="foto" onclick="irParaChicoThuglife()">Chico Thug life</button>
+            <button id="chico_love_button" class="foto" onclick="irParaChicoApaixonado()">Apaixonado</button>
+            <button id="chico_thug_button" class="foto" onclick="irParaChicoThuglife()">Vida Loka</button>
         </div>
     </div>
     <script src="{{ url_for('static', filename='selfie.js') }}" defer></script>

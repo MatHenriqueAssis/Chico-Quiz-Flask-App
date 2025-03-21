@@ -9,9 +9,27 @@
     
 @font-face {
         font-family: FonteParagrafos;
-        src: url('../static/fontes/battlenet.woff2') format('woff2')
-             url('../static/fontes/battlenet.woff') format('woff')
+        src: url('../static/fontes/battlenet.woff2') format('woff2'),
+             url('../static/fontes/battlenet.woff') format('woff'),
              url('../static/fontes/battlenet.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+
+}
+@font-face {
+        font-family: fonte_alt_p_pixellari;
+        src: url('../static/fontes/pixellari.woff2') format('woff2'),
+             url('../static/fontes/pixellari.woff') format('woff'),
+             url('../static/fontes/pixellari.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+
+}
+@font-face {
+        font-family: font_alt_videotype;
+        src: url('../static/fontes/videotype.woff2') format('woff2'),
+             url('../static/fontes/videotype.woff') format('woff'),
+             url('../static/fontes/videotype.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
 
@@ -24,6 +42,9 @@
 
     --fonte-principal: 'FonteTitulos', sans-serif; 
     --fonte-regular: 'FonteParagrafos', sans-serif; 
+    --font-alt-pixellari: 'fonte_alt_p_pixellari', sans-serif;
+    --font-alt-videotype: 'fonte_alt_videotype', sans-serif;
+
 
     /* ////// PROPRIEDADES GLOBAIS ////// */
 
@@ -41,7 +62,7 @@
     --principal-h2-size: 4rem;
  
             /* H3 */    
-    --principal-h3-size: 3rem;  
+    --principal-h3-size: 2rem;  
 
             /* H4 */    
     --principal-h4-size: 2.5rem;

@@ -45,7 +45,6 @@ body::before {
 }
 #espaco-chico{
     width: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,6 +53,7 @@ body::before {
     width: 80%;
     display: flex;
     position: relative;
+    margin-top: 4rem;
 }
 
 .content{
