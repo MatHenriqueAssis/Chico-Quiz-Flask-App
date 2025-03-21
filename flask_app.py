@@ -31,7 +31,7 @@ def initialize_csvfoto():
         df = pd.DataFrame(columns=["id_pessoa", "horario_da_foto"])
         df.to_csv(CSV_FILE, index=False)
 
-csv_path = os.path.join(os.path.dirname(__file__), "instances", "Quiz-Chico.csv")
+csv_path = os.path.join(os.path.dirname(__file__), "instances", "Chiquinho.csv")
 
 def load_question():
     df = pd.read_csv(csv_path)
@@ -130,16 +130,7 @@ def perguntas_categoria(categoria):
     if not perguntas_filtradas:
         return jsonify({"erro": "Categoria não encontrada ou sem perguntas."}), 404
     
-    # Garante que a quantidade de perguntas não ultrapasse o total disponível
-    quantidade_perguntas = min(5, len(perguntas_filtradas))
-
-    # Embaralha e seleciona as perguntas aleatoriamente
-    random.shuffle(perguntas_filtradas)
-    perguntas_selecionadas = perguntas_filtradas[:quantidade_perguntas]
-
-    print("Perguntas aleatórias selecionadas:", perguntas_selecionadas)  # Debug no terminal
-
-    return jsonify(perguntas_selecionadas)
+    return jsonify(perguntas_filtradas)
 
 @app.route('/')
 def home():

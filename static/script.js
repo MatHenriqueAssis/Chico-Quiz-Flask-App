@@ -93,10 +93,6 @@ async function carregarPerguntas() {
                 throw new Error("Erro ao carregar as perguntas");
             }
             let perguntasCarregadas = await response.json();
-            console.log("Perguntas carregadas antes da randomização:", perguntasCarregadas);
-
-            perguntasCarregadas = perguntasCarregadas.sort(() => Math.random() - 0.5);
-            console.log("Perguntas embaralhadas:", perguntasCarregadas);
             return perguntasCarregadas;
             
         } catch (error) {
@@ -116,19 +112,26 @@ async function exibirPergunta(index = 0) {
     const optionList = document.getElementById("options-response");
     optionList.innerHTML = ""; // Limpa as opções anteriores
 
-    const opcoes = ["OpcaoA", "OpcaoB", "OpcaoC", "OpcaoD"];
-    const letras = ["A", "B", "C", "D"];
+    // Criando um array de opções e marcando qual é a correta
+    let opcoes = [
+        { texto: perguntaAtual.OpcaoA, correta: perguntaAtual.OpcaoA === perguntaAtual.Resposta },
+        { texto: perguntaAtual.OpcaoB, correta: perguntaAtual.OpcaoB === perguntaAtual.Resposta },
+        { texto: perguntaAtual.OpcaoC, correta: perguntaAtual.OpcaoC === perguntaAtual.Resposta },
+        { texto: perguntaAtual.OpcaoD, correta: perguntaAtual.OpcaoD === perguntaAtual.Resposta }
+    ];
 
+    // Embaralhar as opções
+    opcoes = opcoes.sort(() => Math.random() - 0.5);
+
+    // Criando os botões das opções
     opcoes.forEach((opcao, i) => {
         let button = document.createElement("button");
         button.classList.add("quiz-option");
-        button.dataset.resposta = perguntaAtual[opcao]; // Armazena a resposta no dataset
-        button.textContent = `${letras[i]}. ${perguntaAtual[opcao]}`;
+        button.dataset.resposta = opcao.texto; // Armazena a resposta no dataset
+        button.dataset.correta = opcao.correta; // Armazena se é a resposta correta
+        button.textContent = `${String.fromCharCode(65 + i)}. ${opcao.texto}`; // A, B, C, D
         optionList.appendChild(button);
     });
-
-    // Inicia o temporizador para a pergunta
-    iniciarTemporizador();
 }
 
 
@@ -192,20 +195,23 @@ function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
                 changeFace("FelizPequeno");
                 acertos++;
                 localStorage.setItem("acertosconsecutivos", acertos);
-
                 somcorrect.play();
             } else {
                 opcao.classList.add("wrong");
                 changeFace("ChoroPequeno");
                 erros++;
                 localStorage.setItem("errosconsecutivos", erros);
-                
+
                 somwrong.play();
             }
         }
     });
+    
+    console.log("Selecionado:", opcaoSelecionada.substring(3).trim());
+    console.log("Correto:", respostaCorreta.trim());
 
-    if (opcaoSelecionada.slice(3) === respostaCorreta) {
+
+    if (opcaoSelecionada.slice(3).trim() === respostaCorreta.trim()) {
         pontos = Math.min(pontos + 20, 100);
     }
 
