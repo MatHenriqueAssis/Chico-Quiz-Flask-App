@@ -41,7 +41,7 @@ questions_global = load_question()
 
 csv_path_parametros = os.path.join(os.path.dirname(__file__), "instances", "Parametros.csv")
 
-def initializa_csvparametros():
+def initialize_csvparametros():
     if not os.path.exists(csv_path_parametros):
         df = pd.DataFrame(columns=["tempo_de_resposta", "quantidade_de_perguntas"])
         df.to_csv(csv_path_parametros, index=False)
@@ -57,7 +57,7 @@ parametros_global = parametros_global[0]
 def get_parametros():
     return jsonify(parametros_global)
 
-#    list_question= random.choice(questions)
+#   list_question= random.choice(questions)
 #    return jsonify(question)
 
 @app.route('/log_jogo', methods=['POST'])
@@ -103,8 +103,7 @@ def quiz():
     return render_template('quiz.html')
 
 @app.route("/fotofinal")
-def fotofinal():
-    ff.capture_and_send_image()
+def foto_final():
     return render_template('foto_final.html')
 
 @app.route("/erro")
@@ -112,7 +111,7 @@ def erro():
     return render_template('erro.html')
 
 @app.route('/final_quiz')
-def foto_final():
+def tela_final():
     return render_template('telafinal.html')    
 
 @app.route('/perguntas/<categoria>', methods=['GET'])
@@ -123,13 +122,14 @@ def perguntas_categoria(categoria):
     if not perguntas_filtradas:
         return jsonify({"erro": "Categoria não encontrada ou sem perguntas."}), 404
     
-     # Embaralha a lista de perguntas
+    # Garante que a quantidade de perguntas não ultrapasse o total disponível
+    quantidade_perguntas = min(5, len(perguntas_filtradas))
+
+    # Embaralha e seleciona as perguntas aleatoriamente
     random.shuffle(perguntas_filtradas)
+    perguntas_selecionadas = perguntas_filtradas[:quantidade_perguntas]
 
-    # Seleciona apenas 5 perguntas
-    perguntas_selecionadas = perguntas_filtradas[:5]
-
-    print("Perguntas embaralhadas e selecionadas:", perguntas_selecionadas)  # Debug no terminal
+    print("Perguntas aleatórias selecionadas:", perguntas_selecionadas)  # Debug no terminal
 
     return jsonify(perguntas_selecionadas)
 
@@ -140,6 +140,12 @@ def home():
 @app.route('/standby')
 def standby():
     return render_template('standby.html')
+
+@app.route("/capturar_foto")
+def capturar_foto():
+    print("📸 Capturando foto agora...")
+    ff.capture_and_send_image() 
+    return {"status": "sucesso", "mensagem": "Foto capturada"}
 
 if __name__ == '__main__':
     app.run(debug=True)

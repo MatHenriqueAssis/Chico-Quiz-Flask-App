@@ -34,21 +34,29 @@ const gerarIdPessoa = () => {
 };
 
 const irParaQuiz = async (categoria) => {
+    try {
+        const response = await fetch(`/perguntas/${categoria}`);
+        const data = await response.json();
 
-    iniciarNovoJogo();
-    localStorage.setItem("categoriaSelecionada", categoria);
-    const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3")  
-     selecaoMenu.play();
-    setTimeout(() =>{
-       
-        window.location.href = "quiz";
-    }, 2000)
+        if (data.erro) {
+            console.error("Erro ao carregar perguntas:", data.erro);
+            return;
+        }  
 
-    
-    
+        localStorage.setItem("perguntas", JSON.stringify(data)); // Salva as perguntas para uso no quiz
+        localStorage.setItem("categoriaSelecionada", categoria);
 
-    await loadQuestion(categoria)
-}
+        const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
+        selecaoMenu.play();
+
+        setTimeout(() => {
+            window.location.href = "quiz"; // Redireciona para a página do quiz
+        }, 2000);
+        
+    } catch (error) {
+        console.error("Erro na requisição de perguntas:", error);
+    }
+};
 
 function irParaCategoria () {
     const selecionarjogar = new Audio('/static/audios/selecionou-jogar.mp3');
@@ -82,7 +90,12 @@ async function carregarPerguntas() {
             if (!response.ok) {
                 throw new Error("Erro ao carregar as perguntas");
             }
-              return await response.json();
+            let perguntasCarregadas = await response.json();
+            console.log("Perguntas carregadas antes da randomização:", perguntasCarregadas);
+
+            perguntasCarregadas = perguntasCarregadas.sort(() => Math.random() - 0.5);
+            console.log("Perguntas embaralhadas:", perguntasCarregadas);
+            return perguntasCarregadas;
             
         } catch (error) {
             console.error("Erro ao buscar perguntas:", error);
@@ -308,7 +321,7 @@ const iniciarNovoJogo = () => {
     acertos = 0;
     erros = 0;
     skips = 0;
-    
+
 
     localStorage.setItem("acertosconsecutivos", acertos);
     localStorage.setItem("errosconsecutivos", erros);

@@ -4,13 +4,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const mensagem2 = document.getElementById("mensagem2");
     const fotografia = new Audio("/static/audios/cronometro-foto.mp3")
 
+    const video = document.getElementById("video");
+    const canvas = document.createElement("canvas")
+
     mensagemTitulo.innerText = `Agora faça Xis que é hora da foto!`
     mensagem.innerText = "Faça uma pose bem bonita e se prepare que em alguns segundos o chico irá tirar uma foto sua ";
     mensagem2.innerText = "confira a sua foto em [Site]"
     
     fotografia.play();
-    
-    enviarLogFoto();
+
+    fetch("/capturar_foto")
+        .then(response => response.json())
+        .then(data => {
+            console.log("✅ Foto capturada com sucesso:", data);
+        })
+        .catch(error => {
+            console.error("❌ Erro ao capturar foto:", error);
+        });
+
+    setTimeout(enviarLogFoto, 3000);
 
     setTimeout(() => {
         window.location.href = "/";
