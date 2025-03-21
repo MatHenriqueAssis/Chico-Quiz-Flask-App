@@ -92,7 +92,15 @@ def log_foto():
 
 @app.route('/selfie')
 def foto():
-    return render_template('fotos.html')
+    return render_template('selfie.html')
+
+@app.route('/chicoapaixonado')
+def coracao():
+    return render_template('coracao.html')
+
+@app.route('/chicothuglife')
+def thuglife():
+    return render_template('thuglife.html')
 
 @app.route('/categoria')
 def categoria():

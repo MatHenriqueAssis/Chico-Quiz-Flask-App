@@ -70,31 +70,41 @@ body::before {
 }
 
 .buttons button{
-    min-width: 400px;
-    padding: 15px 5px;
+    min-width: 500px;
+    /*padding: 15px 5px;*/ /* comentando esse pq o outro ficou mais interessante */
+    padding: 2rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border: 2px solid #000;
+    border-radius: 0.5rem;;
+    border: 4px solid #023f39;
     cursor: pointer;
     position: relative;
     border-radius: 3px;
     background-color: #DBDBDB;
     font-size: 24px;
-    color: #0B3003;
+    color: #023f39;
 }
 
 .buttons button:hover {
-    border-image: linear-gradient(to bottom, #8cd07d, #000000);
+    border-image: linear-gradient(to bottom, #9AF8AC, #01332E);
     border-image-slice: 4;
-    background: linear-gradient(to bottom, #408131,  #145a32);
+    background: linear-gradient(180deg, #07A163,  #036D57);
     color: #fff;
+    box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72)
 }
 
-#button-ghost{
+.button-ghost{
     background-color: transparent !important;
     color: #fff !important;
-    border: 2px solid #fff !important;
+    border: 4px solid #fff !important;
+}
+
+.button-ghost:hover{
+    border-image: linear-gradient(to bottom, #9AF8AC, #01332E) !important;
+    border-image-slice: 4 !important;
+    background: linear-gradient(to bottom, #07A163,  #036D57);
+    color: #fff;
 }
 
 .buttons button img{

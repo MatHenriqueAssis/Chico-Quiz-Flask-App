@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+}
+
+body {
+    background-image: url('../static/imgs/circuito.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #037714;
+    position: relative; 
+    min-height: 100vh; 
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(36, 111, 35, 0.766); 
+    z-index: -1; 
+}
+
+#chico{
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 45%; 
+    height: auto; 
+    transition: all ease .5s;
+}
+#chico-boca{
+    position: absolute;
+    top: 65%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    max-width: 25%;  
+    height: auto; 
+    transition: all ease .5s;
+}
+
+
+.container-choice{
+    position: absolute;
+    background-color: #00000077;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20rem;
+    color: #fff;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    gap: 12rem;
+}
+
+.button-ghost{
+    background-color: transparent !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+}
+
+.buttons button{
+    position: relative;
+    padding: 1.4rem;
+    font-size: 1.3rem;
+    color: #035A51;
+    cursor: pointer;
+    border: none;
+    transition: .3s;
+    border: 2px solid #01332E;
+}
+
+.buttons button:hover{
+    background: linear-gradient(to bottom, #07A163, #01332E);
+    color: #fff;
+    box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72)
+}
+
+
+.reaction{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%; 
+    height: auto; 
+    transition: all ease .5s;
+    display: none;
+}

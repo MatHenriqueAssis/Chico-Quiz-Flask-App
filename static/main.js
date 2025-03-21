@@ -56,16 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
         if (homeopcoes.length === 0) return;
         
         switch(event.key) {
-            case "a":
+            case "r":
                 if (homeopcoes[0]) homeopcoes[0].click();
                 break;
             case "q":
-                if (homeopcoes[0]) homeopcoes[0].click();
-                break;
-            case "r":
+            case "w":
+            case "e":
+            case "t":
                 if (homeopcoes[1]) homeopcoes[1].click();
                 break;
-            case "r":
+            case "a":
+            case "b":
+            case "c":
+            case "d":    
                 if (homeopcoes[1]) homeopcoes[1].click();
                 break;
         }
