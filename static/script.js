@@ -81,7 +81,7 @@ async function exibirPergunta(index = 0) {
     }
 
     const perguntaAtual = perguntas[index];
-    document.getElementById("pergunta").textContent = perguntaAtual.Pergunta;
+    document.getElementById("perguntas").textContent = perguntaAtual.Pergunta;
 
     const optionList = document.getElementById("options-response");
     optionList.innerHTML = ""; // Limpa as opções anteriores
