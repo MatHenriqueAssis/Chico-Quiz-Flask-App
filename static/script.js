@@ -72,9 +72,6 @@ function irParaCategoria () {
     }, 1000)
     
 
-    
-    
-
 }
 
 function irParaSelfie () {
