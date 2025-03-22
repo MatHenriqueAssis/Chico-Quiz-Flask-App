@@ -16,6 +16,15 @@ CORS(app)
 
 CSV_FILE_GAME = os.path.join(os.path.dirname(__file__), "instances","Log-Jogo.csv")
 
+def ler_csv(caminho):
+    # Lê o arquivo CSV com Pandas
+    df = pd.read_csv(caminho) 
+    # Converte o DataFrame para uma lista de dicionários
+    dados = df.to_dict(orient='records')
+    
+    return dados
+
+
 def initialize_csvjogo():
     if not os.path.exists(CSV_FILE_GAME):
         df = pd.DataFrame(columns=[
@@ -31,7 +40,7 @@ def initialize_csvfoto():
         df = pd.DataFrame(columns=["id_pessoa", "horario_da_foto"])
         df.to_csv(CSV_FILE, index=False)
 
-csv_path = os.path.join(os.path.dirname(__file__), "instances", "Quiz-Chico.csv")
+csv_path = os.path.join(os.path.dirname(__file__), "instances", "Chiquinho.csv")
 
 def load_question():
     df = pd.read_csv(csv_path)
@@ -64,8 +73,10 @@ def get_parametros():
 def log_jogo():
     data = request.json
     required_fields = [
-        "id_pessoa", "horario_inicio_jogo", "horario_fim_jogo", "horario_total", 
-        "respostas_acertadas", "respostas_skip", "respostas_erradas", "pontuacao_final"
+        "id_pessoa", "horario_inicio_jogo", "horario_fim_jogo", "horario_total",  
+"respostas_acertadas", "respostas_skip", "respostas_erradas", "pontuacao_final",  
+"id_pergunta_1", "correto_1", "id_pergunta_2", "correto_2", "id_pergunta_3", "correto_3",  
+"id_pergunta_4", "correto_4", "id_pergunta_5", "correto_5"
     ]
     
     if not all(field in data for field in required_fields):
@@ -130,16 +141,7 @@ def perguntas_categoria(categoria):
     if not perguntas_filtradas:
         return jsonify({"erro": "Categoria não encontrada ou sem perguntas."}), 404
     
-    # Garante que a quantidade de perguntas não ultrapasse o total disponível
-    quantidade_perguntas = min(5, len(perguntas_filtradas))
-
-    # Embaralha e seleciona as perguntas aleatoriamente
-    random.shuffle(perguntas_filtradas)
-    perguntas_selecionadas = perguntas_filtradas[:quantidade_perguntas]
-
-    print("Perguntas aleatórias selecionadas:", perguntas_selecionadas)  # Debug no terminal
-
-    return jsonify(perguntas_selecionadas)
+    return jsonify(perguntas_filtradas)
 
 @app.route('/')
 def home():

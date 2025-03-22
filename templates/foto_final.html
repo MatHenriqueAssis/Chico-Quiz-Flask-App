@@ -9,6 +9,13 @@
 </head>
 <body>
     <img src="../static/imgs/Circuito 2.png" class="overlay-img" alt="Imagens de circuitos elétricos que fazem parte do Chico">
+    
+    <header>
+        <div id="position-video">
+            <video id="video" autoplay></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+        </div>
+    </header>
     <div id="finalChico">
         <div id="espaco-chico">
             <img id="gifResultado" src="/static/gifs/grandes/ThugLifeGrande.gif" alt="">
@@ -18,9 +25,7 @@
             <p id="mensagem"></p>
             <p id="mensagem2"></p>
         </div>
-       <!-- <div>
-        <video id="video" width="320" height="240" autoplay></video>
-       </div> -->
+       
     </div>
     <script src="{{ url_for('static', filename='fotoFinal.js') }}"></script>
 </body>
