@@ -9,8 +9,8 @@
     
 @font-face {
         font-family: FonteParagrafos;
-        src: url('../static/fontes/battlenet.woff2') format('woff2')
-             url('../static/fontes/battlenet.woff') format('woff')
+        src: url('../static/fontes/battlenet.woff2') format('woff2'),
+             url('../static/fontes/battlenet.woff') format('woff'),
              url('../static/fontes/battlenet.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;

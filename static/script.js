@@ -132,6 +132,7 @@ async function exibirPergunta(index = 0) {
         button.textContent = `${String.fromCharCode(65 + i)}. ${opcao.texto}`; // A, B, C, D
         optionList.appendChild(button);
     });
+    iniciarTemporizador();
 }
 
 

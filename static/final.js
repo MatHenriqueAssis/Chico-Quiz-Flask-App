@@ -107,4 +107,3 @@ function calcularTempoTotal(horario_inicio, horario_fim_jogo) {
 
     return tempoTotalSegundos;
 }
-
