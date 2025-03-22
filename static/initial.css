@@ -84,6 +84,7 @@ body::before {
     background-color: #DBDBDB;
     font-size: 24px;
     color: #023f39;
+    font-family: var(--font-alt-videotype);
 }
 
 .buttons button:hover {

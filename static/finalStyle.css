@@ -40,25 +40,24 @@ body {
 }
 
 #mensagemTitulo {
-    margin-top: 100px;
-    color: white;
+    color: #000 !important;
     text-align: center;
-    font-size: 30px;
+    font-size: 3rem;
+    font-family: var(--font-alt-pixellari);
+    margin: 10px 0;
 }
 
-#mensagem {
-    margin-top: 20px;
-    color: white;
+#mensagem,
+#mensagem2, 
+#mensagem3{
+    color: #000;
     text-align: center;
-    font-size: 30px;
+    font-size: 1.3rem;
+    font-family: var(--font-alt-videotype);
+    color: #043A09;
 }
 
-#mensagem2{
-    margin-top: 20px;
-    color: white;
-    text-align: center;
-    font-size: 30px;
-}
+
 
 .overlay-img {
     position: fixed; 
@@ -72,9 +71,31 @@ body {
 }
 
 #texto{
-    padding: 16px 12px;
     border: 8px solid #87c269;
     border-radius: 4px;
-    background-color: #fff !important;
+    background-color: #fff;
     text-align: center;
+    color: #000 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.linear-green{
+    background: linear-gradient(45deg, #035A51, #61AE44); /* Cores do gradiente */
+    -webkit-background-clip: text; /* Aplica o gradiente ao texto */
+    -webkit-text-fill-color: transparent;
+}
+
+.linear-orange{
+    background: linear-gradient(45deg, #035A51, #f39c12); /* Cores do gradiente */
+    -webkit-background-clip: text; /* Aplica o gradiente ao texto */
+    -webkit-text-fill-color: transparent;
+}
+.linear-red{
+    background: linear-gradient(45deg, #f39c12, #e74c3c ); /* Cores do gradiente */
+    -webkit-background-clip: text; /* Aplica o gradiente ao texto */
+    -webkit-text-fill-color: transparent;
 }

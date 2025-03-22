@@ -59,11 +59,11 @@ body::before {
 }
 
 .container-choice h2{
-    font-size: 2rem;
+    font-size: 2.3rem;
     color: #fff;
     margin-bottom: 20px;
     text-align: center;
-    font-family: var(--font-alt-videotype);
+    font-family: var(--fonte-principal);
 }
 
 .buttons{

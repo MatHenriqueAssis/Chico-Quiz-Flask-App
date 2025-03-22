@@ -302,9 +302,9 @@ body {
     transform: translate(-50%, -50%);
 }
 .categories h1{
-    font-size: 3rem;
+    font-size: 3.2rem;
     color: #fff;
-    font-family: var(--font-alt-videotype);
+    font-family: var(--fonte-principal);
 }
 
 .categories h3{
@@ -322,6 +322,7 @@ body {
 .categories-buttons button{
     font-size: 1rem;
     padding: 30px 0;
+    font-family: var(--font-alt-videotype)
 }
 
 .restart-button{

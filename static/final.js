@@ -13,18 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define mensagens e GIFs baseados na pontuação
     if (pontuacao === 100) {
         mensagemTitulo.innerText = `Parabéns, você fez ${pontuacao} pontos!`
+        mensagemTitulo.classList.add('linear-green')
         mensagem.innerText = "O chico ficou apaixonado pelo seu desempenho! S2";
         mensagem2.innerText = "Espero que você tenha se divertido <3"
         gif.src = "/static/gifs/grandes/CoracaoGrande.gif";
         parabens.play();
     } else if (pontuacao > 40 && pontuacao <= 80) {
         mensagemTitulo.innerText = `Muito bem, você fez ${pontuacao} pontos!`
+        mensagemTitulo.classList.add('linear-orange')
         mensagem.innerText = "O chico está feliz, mas ele está torcendo para você acertar todas da próxima vez";
         mensagem2.innerText = "Espero que você tenha se divertido"
         gif.src = "/static/gifs/grandes/ThugLifeGrande.gif";
         metade.play();
     } else{
         mensagemTitulo.innerText = `Que pena, você fez ${pontuacao}`;
+        mensagemTitulo.classList.add('linear-red')
         mensagem.innerText = "O Chico está triste, mas ele acredita no seu potencial!"
         mensagem2.innerText = "Vamos jogar novamente :D";
         gif.src = "/static/gifs/grandes/DeBobeiraGrande.gif";
