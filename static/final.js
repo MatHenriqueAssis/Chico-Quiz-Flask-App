@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const mensagemTitulo = document.getElementById("mensagemTitulo");
     const gif = document.getElementById("gifResultado");
     const parabens = new Audio("/static/audios/Parabens-acertou.mp3");
-    const metade = new Audio("/static/audios/acertou-metade.wav");
-    const menos2 = new Audio("/static/audios/Acertou-2-ou-nenhuma.mp3");
 
     // Define mensagens e GIFs baseados na pontuação
     if (pontuacao === 100) {
@@ -24,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
         mensagem.innerText = "O chico está feliz, mas ele está torcendo para você acertar todas da próxima vez";
         mensagem2.innerText = "Espero que você tenha se divertido"
         gif.src = "/static/gifs/grandes/ThugLifeGrande.gif";
-        metade.play();
+        parabens.play();
     } else{
         mensagemTitulo.innerText = `Que pena, você fez ${pontuacao}`;
         mensagemTitulo.classList.add('linear-red')
         mensagem.innerText = "O Chico está triste, mas ele acredita no seu potencial!"
         mensagem2.innerText = "Vamos jogar novamente :D";
         gif.src = "/static/gifs/grandes/DeBobeiraGrande.gif";
-        menos2.play();
+        parabens.play();
     }
 
     setTimeout(() => {
