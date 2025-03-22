@@ -29,7 +29,8 @@ document.addEventListener("keydown", function(event) {
             if (opcoesfoto[1]) opcoesfoto[1].click();
             break;
         case "r":
-            irParaHome();
+            window.location.href = "/"
             break;
     }
 });
+

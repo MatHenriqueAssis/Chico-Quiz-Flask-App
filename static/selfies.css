@@ -59,7 +59,8 @@ body::before {
 }
 
 .container-choice h2{
-    font-size: 2.3rem;
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
     color: #fff;
     margin-bottom: 20px;
     text-align: center;
@@ -80,7 +81,7 @@ body::before {
 
 .buttons button{
     position: relative;
-    padding: 1.4rem;
+    padding: 2rem;
     font-size: var(--regular-p-size);
     font-family: var(--font-alt-videotype);
     color: #035A51;
@@ -89,13 +90,15 @@ body::before {
     transition: .3s;
     border: 2px solid #01332E;
     border-radius: 8px;
-    width: 300px;
+    width: 430px;
 }
 
 .buttons button:hover{
-    background: linear-gradient(to bottom, #07A163, #01332E);
+    border-image: linear-gradient(to bottom, #9AF8AC, #01332E);
+    border-image-slice: 4;
+    background: linear-gradient(180deg, #07A163,  #036D57);
     color: #fff;
-    box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72)
+    box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72);
 }
 
 

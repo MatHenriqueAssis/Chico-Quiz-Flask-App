@@ -20,10 +20,15 @@
         <h2>Escolha uma pose do chico para você tirar uma foto bem bacana #Ch1coSabido</h2>
 
         <div class="buttons">
-            <button id="chico_love_button" class="foto" onclick="irParaChicoApaixonado()">Apaixonado</button>
-            <button id="chico_thug_button" class="foto" onclick="irParaChicoThuglife()">Vida Loka</button>
+            <button id="chico_love_button" class="foto" onclick="irParaChicoApaixonado()">A. Apaixonado</button>
+            <button id="chico_thug_button" class="foto" onclick="irParaChicoThuglife()">B. Vida Loka</button>
         </div>
     </div>
+    <!-- static/musica.html -->
+    <audio id="musica" autoplay loop>
+        <source src="/static/audios/musica-fundo.mp3" type="audio/mpeg">
+    </audio>
+    <script src="../static/musicaFundo.js"></script>
     <script src="{{ url_for('static', filename='selfie.js') }}" defer></script>
 </body>
 </html>

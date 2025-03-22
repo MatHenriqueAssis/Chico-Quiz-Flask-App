@@ -16,7 +16,7 @@
         font-style: normal;
 
 }
-@font-face {
+/*@font-face {
         font-family: fonte_alt_p_pixellari;
         src: url('../static/fontes/pixellari.woff2') format('woff2'),
              url('../static/fontes/pixellari.woff') format('woff'),
@@ -24,7 +24,7 @@
         font-weight: normal;
         font-style: normal;
 
-}
+} */
 @font-face {
         font-family: font_alt_videotype;
         src: url('../static/fontes/videotype.woff2') format('woff2'),
@@ -42,8 +42,8 @@
 
     --fonte-principal: 'FonteTitulos', sans-serif; 
     --fonte-regular: 'FonteParagrafos', sans-serif; 
-    --font-alt-pixellari: 'fonte_alt_p_pixellari', sans-serif;
-    --font-alt-videotype: 'fonte_alt_videotype', sans-serif;
+   /* --font-alt-pixellari: 'fonte_alt_p_pixellari', sans-serif; */
+    --font-alt-videotype: 'font_alt_videotype', sans-serif;
 
 
     /* ////// PROPRIEDADES GLOBAIS ////// */

@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--fonte-principal);
 }
 
 body {
@@ -26,6 +26,7 @@ header {
     margin-top: 30px;
     color: white;
     font-size: var(--principal-h1-size);
+    letter-spacing: 0.4rem;
     font-weight: bold;
     padding: 15px;
     display: flex;

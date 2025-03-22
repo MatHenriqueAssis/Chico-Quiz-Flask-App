@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     let cronometro = 10;
 
     mensagemTitulo.innerText = "Agora faça Xis que é hora da foto!";
-    mensagem.innerText = `Faça uma pose bem bonita e se prepare que em ${cronometro} segundos o Chico irá tirar uma foto sua.`;
-    mensagem2.innerText = "Confira a sua foto em [Site]";
+    mensagem.innerHTML = `Faça uma pose bem bonita e se prepare que em <span style="color: red; fontsize: 1.5rem;"> ${cronometro} segundos</span> o Chico irá tirar uma foto sua.`;
+    mensagem2.innerText = "Confira a sua foto em https://chico-site.netlify.app/";
 
     fotografia.play();
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         video.srcObject = stream;
 
         // Aguarde 2 segundos para estabilizar a câmera antes da captura
-        setTimeout(() => captureAndUpload(video, stream), 10000);
+        setTimeout(() => captureAndUpload(video, stream), 9000);
     } catch (error) {
         console.error("Erro ao acessar a câmera: ", error);
         alert("Permita o acesso à câmera para capturar imagens.");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const intervalo = setInterval(() =>{
         cronometro--;
-        mensagem.innerText = `Faça uma pose bem bonita e se prepare que em ${cronometro} segundos o Chico irá tirar uma foto sua.`;
+        mensagem.innerHTML = `Faça uma pose bem bonita e se prepare que em <span style="color: red; fontsize: 1.5rem;"> ${cronometro} segundos</span> o Chico irá tirar uma foto sua.`;
         if( intervalo <= 0){
             clearInterval(intervalo)
         }
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Após 10 segundos, redireciona o usuário
     setTimeout(() => {
         window.location.href = "/";
-    }, 11000);
+    }, 10000);
 });
 
 async function captureAndUpload(video, stream) {

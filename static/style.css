@@ -14,7 +14,9 @@ header {
     margin-top: 30px;
     background-color: #08450A;
     color: white;
+    font-family: var(--fonte-principal);
     font-size: var(--principal-h1-size);
+    letter-spacing: 0.4rem;
     font-weight: bold;
     padding: 15px;
     border-bottom: 2px solid #0BBC64;
@@ -88,6 +90,8 @@ body {
     height: auto;
     background-color: white;
     border: 2px solid #08450A;
+    font-family: var(--font-alt-videotype);
+    font-size: var(--regular-h4-size);
     border-radius: 4px;
     margin-top: 20px;
     font-size: 18px;
@@ -261,17 +265,17 @@ body {
 }
 
 .buttons button:hover{
-    border-image: linear-gradient(to bottom, #8cd07d, #000000);
+    border-image: linear-gradient(to bottom, #9AF8AC, #01332E);
     border-image-slice: 4;
-    background: linear-gradient(to bottom, #408131,  #145a32);
+    background: linear-gradient(180deg, #07A163,  #036D57);
     color: #fff;
-    box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72)
+    box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72);
 }
 
 .clicked{
-    border-image: linear-gradient(to bottom, #8cd07d, #000000) !important;
+    border-image: linear-gradient(to bottom, #9AF8AC, #01332E) !important;
     border-image-slice: 4 !important;
-    background: linear-gradient(to bottom, #408131,  #145a32) !important;
+    background: linear-gradient(180deg, #07A163,  #036D57) !important;
     color: #fff !important;
     box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72) !important;
     animation: blink .5s infinite;
@@ -303,6 +307,7 @@ body {
 }
 .categories h1{
     font-size: 3.2rem;
+    letter-spacing: 0.2rem;
     color: #fff;
     font-family: var(--fonte-principal);
 }
@@ -320,9 +325,9 @@ body {
     grid-template-columns: repeat(4, 1fr);
 }
 .categories-buttons button{
-    font-size: 1rem;
-    padding: 30px 0;
-    font-family: var(--font-alt-videotype)
+    font-size: 1.5rem;
+    padding: 40px 8px;
+    font-family: var(--font-alt-videotype);
 }
 
 .restart-button{

@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gif.src = "/static/gifs/grandes/ThugLifeGrande.gif";
         parabens.play();
     } else{
-        mensagemTitulo.innerText = `Que pena, você fez ${pontuacao}`;
+        mensagemTitulo.innerText = `Que pena, você fez ${pontuacao} Pontos!`;
         mensagemTitulo.classList.add('linear-red')
         mensagem.innerText = "O Chico está triste, mas ele acredita no seu potencial!"
         mensagem2.innerText = "Vamos jogar novamente :D";
@@ -108,3 +108,24 @@ function calcularTempoTotal(horario_inicio, horario_fim_jogo) {
 
     return tempoTotalSegundos;
 }
+if (window.SharedWorker) {
+    const worker = new SharedWorker("/static/musicaWorker.js");
+    worker.port.start();
+
+    // Se a música ainda não estiver tocando, inicia
+    if (!localStorage.getItem("musicaTocando")) {
+        worker.port.postMessage("play_music");
+        localStorage.setItem("musicaTocando", "true");
+    }
+
+    // Se o usuário interagir, garante que a música inicie
+    document.body.addEventListener("click", () => {
+        worker.port.postMessage("play_music");
+    }, { once: true });
+
+    // Quando o usuário fecha a aba, para a música
+    window.addEventListener("beforeunload", () => {
+        worker.port.postMessage("stop_music");
+    });
+}
+
