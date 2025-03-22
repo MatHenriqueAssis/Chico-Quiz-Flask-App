@@ -6,11 +6,10 @@ let perguntas = []; // 🔹 Armazena as perguntas globalmente
 const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
 let tempoTotal = 30;
-let timerpergunta;
+
 let acertos = parseInt(localStorage.getItem("acertosconsecutivos")) || 0;
 let erros = parseInt(localStorage.getItem("errosconsecutivos")) || 0;
 let skips = parseInt(localStorage.getItem("respostas_skip")) || 0;
-let contadorSkips = 0;
 
 const API_BASE_URL = window.location.hostname === "localhost"
     ? "http://127.0.0.1:5000/perguntas"
@@ -144,11 +143,6 @@ async function exibirPergunta(index = 0) {
 function iniciarTemporizador() {
     let timerCircle = document.getElementById("timer-circle");
     let timerText = document.getElementById("timer-text");
-
-    if (timerpergunta) {
-        timerpergunta.pause(); // Para a reprodução anterior
-        timerpergunta.currentTime = 0; // Reinicia o áudio
-    }
     
     clearInterval(timer);
     tempoRestante = tempoTotal // Reinicia o tempo
@@ -169,15 +163,6 @@ function iniciarTemporizador() {
         timerpergunta = new Audio('/static/audios/cronometro-perguntas.mp3')
         timerpergunta.playbackRate = 0.5
 
-        timer = setInterval(() =>{
-            if(tempoRestante <= 0) {
-                clearInterval(timer)
-                skips++
-                localStorage.setItem("respostas_skip", skips);
-                passarParaProximaPergunta();
-                return;
-            }
-        })
         
         if(tempoRestante === 30) {
             changeFace("FalandoPequeno");
@@ -185,7 +170,6 @@ function iniciarTemporizador() {
 
         if(tempoRestante <= 10){
             changeFace("NervosoPequeno")
-            timerpergunta.play();
         }
 
         let progresso =  CIRCUNFERENCIA * (tempoRestante / tempoTotal);
@@ -259,14 +243,8 @@ function atualizarPontuacao() {
 }
 
 async function  passarParaProximaPergunta() {
-    clearInterval(timer)
     indexPergunta++;
-    contadorSkips++;
     
-    if(timerpergunta) {
-        timerpergunta.pause();
-        timerpergunta.currentTime = 0;
-    }
 
     if (indexPergunta < perguntas.length) {
         exibirPergunta(indexPergunta);
@@ -492,23 +470,3 @@ document.addEventListener("keydown", function(event) {
             break;
     }
 });
-if (window.SharedWorker) {
-    const worker = new SharedWorker("/static/musicaWorker.js");
-    worker.port.start();
-
-    // Se a música ainda não estiver tocando, inicia
-    if (!localStorage.getItem("musicaTocando")) {
-        worker.port.postMessage("play_music");
-        localStorage.setItem("musicaTocando", "true");
-    }
-
-    // Se o usuário interagir, garante que a música inicie
-    document.body.addEventListener("click", () => {
-        worker.port.postMessage("play_music");
-    }, { once: true });
-
-    // Quando o usuário fecha a aba, para a música
-    window.addEventListener("beforeunload", () => {
-        worker.port.postMessage("stop_music");
-    });
-}
