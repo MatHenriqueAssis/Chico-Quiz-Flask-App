@@ -5,19 +5,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     const video = document.getElementById("video");
     const fotografia = new Audio("/static/audios/cronometro-foto.mp3");
     let cronometro = 10;
-
+    const captura = new Audio("/static/audios/tirar-foto.wav")
     mensagemTitulo.innerText = "Agora faça Xis que é hora da foto!";
     mensagem.innerHTML = `Faça uma pose bem bonita e se prepare que em <span style="color: red; fontsize: 1.5rem;"> ${cronometro} segundos</span> o Chico irá tirar uma foto sua.`;
     mensagem2.innerText = "Confira a sua foto em https://chico-site.netlify.app/";
 
     fotografia.play();
 
+
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         video.srcObject = stream;
 
         // Aguarde 2 segundos para estabilizar a câmera antes da captura
-        setTimeout(() => captureAndUpload(video, stream), 9000);
+        setTimeout(() => {
+            captureAndUpload(video, stream), captura.play()},9000);
     } catch (error) {
         console.error("Erro ao acessar a câmera: ", error);
         alert("Permita o acesso à câmera para capturar imagens.");
@@ -44,9 +46,23 @@ async function captureAndUpload(video, stream) {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth / 2;
+    canvas.height = video.videoHeight / 2;
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Aplica o blur na imagem colorida
+    applyBlur(context, canvas.width, canvas.height, 5);
+
+    // Converte para escala de cinza
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        data[i] = avg;
+        data[i + 1] = avg;
+        data[i + 2] = avg;
+    }
+    context.putImageData(imageData, 0, 0);
 
     canvas.toBlob(async (blob) => {
         const formData = new FormData();
@@ -64,10 +80,42 @@ async function captureAndUpload(video, stream) {
             console.error("Erro ao enviar imagem:", error);
             alert("Erro ao enviar imagem.");
         } finally {
-            // Fechar a câmera após captura
             stream.getTracks().forEach(track => track.stop());
         }
     }, "image/jpeg");
+}
+
+function applyBlur(context, width, height, radius) {
+    const imageData = context.getImageData(0, 0, width, height);
+    const pixels = imageData.data;
+    const result = context.createImageData(width, height);
+    const resultPixels = result.data;
+
+    for (let i = 0; i < pixels.length; i += 4) {
+        let r = 0, g = 0, b = 0, count = 0;
+
+        for (let x = -radius; x <= radius; x++) {
+            for (let y = -radius; y <= radius; y++) {
+                const offsetX = i + x * 4;
+                const offsetY = offsetX + y * width * 4;
+
+                if (offsetX >= 0 && offsetX < pixels.length &&
+                    offsetY >= 0 && offsetY < pixels.length) {
+                    r += pixels[offsetY];
+                    g += pixels[offsetY + 1];
+                    b += pixels[offsetY + 2];
+                    count++;
+                }
+            }
+        }
+
+        resultPixels[i] = r / count;
+        resultPixels[i + 1] = g / count;
+        resultPixels[i + 2] = b / count;
+        resultPixels[i + 3] = pixels[i + 3]; // Alpha
+    }
+
+    context.putImageData(result, 0, 0);
 }
 
 async function enviarLogFoto() {

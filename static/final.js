@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (pontuacao === 100) {
         mensagemTitulo.innerText = `Parabéns, você fez ${pontuacao} pontos!`
         mensagemTitulo.classList.add('linear-green')
-        mensagem.innerText = "O chico ficou apaixonado pelo seu desempenho! S2";
-        mensagem2.innerText = "Espero que você tenha se divertido <3"
+        mensagem.innerHTML = `O chico ficou apaixonado pelo seu desempenho! <span style="color: red; fontsize: 1.5rem;">S2</span>`;
+        mensagem2.innerHTML = `Espero que você tenha se divertido <span style="color: red; fontsize: 1.5rem;"><3</span>`
         gif.src = "/static/gifs/grandes/CoracaoGrande.gif";
         parabens.play();
     } else if (pontuacao > 40 && pontuacao <= 80) {
@@ -42,59 +42,60 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 function enviarLogJogo() {
-       let id_pessoa = localStorage.getItem("id_pessoa");
-       if (!id_pessoa) {
-        let ultimoId = localStorage.getItem("ultimo_id_pessoa") || 0;
-        id_pessoa = parseInt(ultimoId) + 1;
-        localStorage.setItem("id_pessoa", id_pessoa);
-        localStorage.setItem("ultimo_id_pessoa", id_pessoa);
-    }
+    let id_pessoa = localStorage.getItem("id_pessoa");
+    if (!id_pessoa) {
+     let ultimoId = localStorage.getItem("ultimo_id_pessoa") || 0;
+     id_pessoa = parseInt(ultimoId) + 1;
+     localStorage.setItem("id_pessoa", id_pessoa);
+     localStorage.setItem("ultimo_id_pessoa", id_pessoa);
+ }
 
-    console.log("ID da pessoa recuperado/enviado:", id_pessoa);
+ console.log("ID da pessoa recuperado/enviado:", id_pessoa);
 
-       const horario_inicio_jogo = localStorage.getItem("inicioQuiz");
-       if(!horario_inicio_jogo) {console.log("horario de jogo não encontrado"); return;}
-       const horario_fim_jogo = new Date().toISOString();
-       const horario_total =  calcularTempoTotal(horario_inicio_jogo, horario_fim_jogo);
-       if(horario_total === null) {console.log("Erro tempo total do jogo"); return;}
-       const respostas_acertadas = parseInt(localStorage.getItem("acertosconsecutivos")) || 0;
-       const respostas_skip = parseInt(localStorage.getItem("respostas_skip")) || 0;
-       const respostas_erradas = parseInt(localStorage.getItem("errosconsecutivos")) || 0;
-       const pontuacao_final = parseInt(localStorage.getItem("pontos")) || 0;
-    
-       if (horario_total === null) {
-        console.error("Erro ao calcular tempo total do jogo. Envio abortado.");
-        return;
-    }
+    const horario_inicio_jogo = localStorage.getItem("inicioQuiz");
+    if(!horario_inicio_jogo) {console.log("horario de jogo não encontrado"); return;}
+    const horario_fim_jogo = new Date().toISOString();
+    const horario_total =  calcularTempoTotal(horario_inicio_jogo, horario_fim_jogo);
+    if(horario_total === null) {console.log("Erro tempo total do jogo"); return;}
+    const respostas_acertadas = parseInt(localStorage.getItem("acertosconsecutivos")) || 0;
+    const respostas_skip = parseInt(localStorage.getItem("respostas_skip")) || 0;
+    const respostas_erradas = parseInt(localStorage.getItem("errosconsecutivos")) || 0;
+    const pontuacao_final = parseInt(localStorage.getItem("pontos")) || 0;
+ 
+    if (horario_total === null) {
+     console.error("Erro ao calcular tempo total do jogo. Envio abortado.");
+     return;
+ }
 
-    const dados = {
-        id_pessoa,
-        horario_inicio_jogo,
-        horario_fim_jogo,
-        horario_total,
-        respostas_acertadas,
-        respostas_skip,
-        respostas_erradas,
-        pontuacao_final
-    };
+ const dados = {
+     id_pessoa,
+     horario_inicio_jogo,
+     horario_fim_jogo,
+     horario_total,
+     respostas_acertadas,
+     respostas_skip,
+     respostas_erradas,
+     pontuacao_final
+ };
 
-    console.log("Dados enviados:", dados); // Verificar os dados antes do envio 
+ console.log("Dados enviados:", dados); // Verificar os dados antes do envio 
 
-    fetch("/log_jogo", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dados)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Resposta do servidor:", data);
-    })
-    .catch(error => {
-        console.error("Erro ao enviar log:", error);
-    });
+ fetch("/log_jogo", {
+     method: "POST",
+     headers: {
+         "Content-Type": "application/json"
+     },
+     body: JSON.stringify(dados)
+ })
+ .then(response => response.json())
+ .then(data => {
+     console.log("Resposta do servidor:", data);
+ })
+ .catch(error => {
+     console.error("Erro ao enviar log:", error);
+ });
 }
+
 
 function calcularTempoTotal(horario_inicio, horario_fim_jogo) {
     if (!horario_inicio) {

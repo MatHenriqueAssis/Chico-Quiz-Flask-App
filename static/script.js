@@ -6,10 +6,11 @@ let perguntas = []; // 🔹 Armazena as perguntas globalmente
 const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
 let tempoTotal = 30;
-
+let timerpergunta;
 let acertos = parseInt(localStorage.getItem("acertosconsecutivos")) || 0;
 let erros = parseInt(localStorage.getItem("errosconsecutivos")) || 0;
 let skips = parseInt(localStorage.getItem("respostas_skip")) || 0;
+let contadorSkips = 0;
 
 const API_BASE_URL = window.location.hostname === "localhost"
     ? "http://127.0.0.1:5000/perguntas"
@@ -34,8 +35,14 @@ const gerarIdPessoa = () => {
 };
 
 const irParaQuiz = async (categoria, event) => {
-
     event.target.classList.add('clicked');
+
+    // Gera um novo ID para a pessoa ao iniciar um novo jogo
+    let ultimoId = localStorage.getItem("ultimo_id_pessoa") || 0;
+    let novoId = parseInt(ultimoId) + 1;
+    localStorage.setItem("id_pessoa", novoId);
+    localStorage.setItem("ultimo_id_pessoa", novoId);
+    console.log("Novo ID gerado:", novoId);
 
     try {
         const response = await fetch(`/perguntas/${categoria}`);
@@ -44,20 +51,18 @@ const irParaQuiz = async (categoria, event) => {
         if (data.erro) {
             console.error("Erro ao carregar perguntas:", data.erro);
             return;
-        }  
+        }
 
-        localStorage.setItem("perguntas", JSON.stringify(data)); // Salva as perguntas para uso no quiz
+        localStorage.setItem("perguntas", JSON.stringify(data));
         localStorage.setItem("categoriaSelecionada", categoria);
 
         const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
         selecaoMenu.play();
 
         setTimeout(async () => {
-            localStorage.setItem("categoriaSelecionada", categoria);
-            window.location.href = "quiz"
-            await loadQuestion(categoria)
-        }, 2000)
-        
+            window.location.href = "quiz";
+            await loadQuestion(categoria);
+        }, 2000);
     } catch (error) {
         console.error("Erro na requisição de perguntas:", error);
     }
@@ -140,8 +145,10 @@ function iniciarTemporizador() {
     let timerCircle = document.getElementById("timer-circle");
     let timerText = document.getElementById("timer-text");
 
-    const timerpergunta = new Audio('/static/audios/cronometro-perguntas.mp3')
-    timerpergunta.playbackRate = 0.5
+    if (timerpergunta) {
+        timerpergunta.pause(); // Para a reprodução anterior
+        timerpergunta.currentTime = 0; // Reinicia o áudio
+    }
     
     clearInterval(timer);
     tempoRestante = tempoTotal // Reinicia o tempo
@@ -157,9 +164,21 @@ function iniciarTemporizador() {
             localStorage.setItem("respostas_skip", skips);
             passarParaProximaPergunta();
             return
-        }
+        }   
         
-    
+        timerpergunta = new Audio('/static/audios/cronometro-perguntas.mp3')
+        timerpergunta.playbackRate = 0.5
+
+        timer = setInterval(() =>{
+            if(tempoRestante <= 0) {
+                clearInterval(timer)
+                skips++
+                localStorage.setItem("respostas_skip", skips);
+                passarParaProximaPergunta();
+                return;
+            }
+        })
+        
         if(tempoRestante === 30) {
             changeFace("FalandoPequeno");
         }
@@ -239,10 +258,22 @@ function atualizarPontuacao() {
     document.getElementById("pontuacao").textContent = `Pontos: ${pontos}/100`;
 }
 
-async function passarParaProximaPergunta() {
+async function  passarParaProximaPergunta() {
     clearInterval(timer)
     indexPergunta++;
+    contadorSkips++;
+    
+    if(timerpergunta) {
+        timerpergunta.pause();
+        timerpergunta.currentTime = 0;
+    }
 
+    if(contadorSkips === 3){
+        skips++;
+        localStorage.setItem("resposta_skip", skips);
+        irParaHome();
+        return;
+    }
 
     if (indexPergunta < perguntas.length) {
         exibirPergunta(indexPergunta);
@@ -323,22 +354,19 @@ function salvarLog() {
     console.log("Log atualizado:", logs);
 }
 
-const iniciarNovoJogo = () => {
-    localStorage.removeItem("id_pessoa"); // Garante um novo jogador
-    const idPessoa = gerarIdPessoa();
+function iniciarNovoJogo() {
+    localStorage.clear(); // Apaga tudo no localStorage
+    localStorage.setItem("inicioQuiz", new Date().toISOString());
 
-    acertos = 0;
-    erros = 0;
-    skips = 0;
+    // Inicializa os valores corretamente
+    localStorage.setItem("respostas", JSON.stringify([]));
+    localStorage.setItem("acertosconsecutivos", 0);
+    localStorage.setItem("errosconsecutivos", 0);
+    localStorage.setItem("pontos", 0);
 
+    console.log("🎮 Novo jogo iniciado, localStorage resetado!");
+}
 
-    localStorage.setItem("acertosconsecutivos", acertos);
-    localStorage.setItem("errosconsecutivos", erros);
-    localStorage.setItem("respostas_skip", skips);
-    
-    console.log("Novo jogo iniciado para ID:", idPessoa);
-    exibirPergunta();
-};
 
 function salvarfotosLog() {
     const idPessoa = localStorage.getItem("id_pessoa");

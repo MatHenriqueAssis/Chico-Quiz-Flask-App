@@ -1,1 +1,9 @@
-id_pessoa,horario_inicio_jogo,horario_fim_jogo,tempo_gasto,respostas_acertadas,respostas_skip,respostas_erradas,pontuacao_final,id_pergunta_1,correto_1,id_pergunta_2,correto_2,id_pergunta_3,correto_3,id_pergunta_4,correto_4,id_pergunta_5,correto_5
+d_pessoa,horario_inicio_jogo,horario_fim_jogo,tempo_gasto,respostas_acertadas,respostas_skip,respostas_erradas,pontuacao_final
+
+
+5,2025-03-22T09:49:11.509Z,2025-03-22T09:49:39.238Z,27,12,0,11,100
+6,2025-03-22T09:51:23.586Z,2025-03-22T09:51:48.399Z,24,16,0,12,80
+8,2025-03-22T09:56:02.271Z,2025-03-22T09:56:46.936Z,44,21,0,14,100
+9,2025-03-22T10:08:07.409Z,2025-03-22T10:09:14.676Z,67,26,0,14,100
+11,2025-03-22T10:09:40.598Z,2025-03-22T11:03:40.087Z,3239,26,7,14,100
+11,2025-03-22T10:09:40.598Z,2025-03-22T11:06:54.903Z,3434,26,7,14,100

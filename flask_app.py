@@ -75,8 +75,6 @@ def log_jogo():
     required_fields = [
         "id_pessoa", "horario_inicio_jogo", "horario_fim_jogo", "horario_total",  
 "respostas_acertadas", "respostas_skip", "respostas_erradas", "pontuacao_final",  
-"id_pergunta_1", "correto_1", "id_pergunta_2", "correto_2", "id_pergunta_3", "correto_3",  
-"id_pergunta_4", "correto_4", "id_pergunta_5", "correto_5"
     ]
     
     if not all(field in data for field in required_fields):
