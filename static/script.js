@@ -268,13 +268,6 @@ async function  passarParaProximaPergunta() {
         timerpergunta.currentTime = 0;
     }
 
-    if(contadorSkips === 3){
-        skips++;
-        localStorage.setItem("resposta_skip", skips);
-        irParaHome();
-        return;
-    }
-
     if (indexPergunta < perguntas.length) {
         exibirPergunta(indexPergunta);
     } else {
