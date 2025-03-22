@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Aguarde 2 segundos para estabilizar a câmera antes da captura
         setTimeout(() => {
-            captureAndUpload(video, stream), captura.play()},9000);
+            captureAndUpload(video, stream), captura.play()},7000);
     } catch (error) {
         console.error("Erro ao acessar a câmera: ", error);
         alert("Permita o acesso à câmera para capturar imagens.");
