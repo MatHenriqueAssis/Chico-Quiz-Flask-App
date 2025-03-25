@@ -59,7 +59,6 @@ async function captureAndUpload(video, stream) {
                 method: "POST",
                 body: formData
             });
-
             const data = await response.json();
             console.log("Imagem enviada com sucesso!", data);
         } catch (error) {
