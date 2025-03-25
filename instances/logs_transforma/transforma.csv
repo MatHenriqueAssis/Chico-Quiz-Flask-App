@@ -1,0 +1,9 @@
+id_pergunta,Categoria,Pergunta,OpcaoA,OpcaoB,OpcaoC,OpcaoD,RespostaCorreta
+1,"Sustentabilidade","O que devemos fazer com o lixo reciclável?","Jogar na rua","Separar e colocar nos locais corretos","Guardar para sempre em casa","Misturar tudo no mesmo saco","Separar e colocar nos locais corretos"
+2,"Sustentabilidade","Qual desses hábitos ajuda a natureza?","Plantar árvores","Deixar a torneira aberta enquanto escova os dentes","Jogar lixo no chão","Usar plástico sempre que puder","Plantar árvores"
+3,"Sustentabilidade","De onde vem a energia do sol?","De um poste de luz","Da lua","Do próprio sol","De uma bateria mágica","Do próprio sol"
+4,"Sustentabilidade","Qual desses animais vive na água e pode ser prejudicado pelo lixo?","Gato","Caranguejo","Leão","Galo","Caranguejo"
+5,"Sebrae","O que o Sebrae faz?","Ajuda pessoas que querem ter seu próprio negócio","Vende brinquedos","Faz jogos de videogame","Entrega cartas","Ajuda pessoas que querem ter seu próprio negócio"
+6,"Sebrae","Se alguém quiser vender brigadeiros na escola o que precisa fazer?","Contar para os amigos e divulgar","Comer todos os brigadeiros sozinho","Deixar os brigadeiros caírem no chão","Jogar fora antes de vender","Contar para os amigos e divulgar"
+7,"Empreendedorismo","O que um empreendedor faz?","Cria ideias e abre um negócio","Só brinca o dia todo","Compra coisas e não usa","Dorme e espera as coisas acontecerem","Cria ideias e abre um negócio"
+8,"Empreendedorismo","O que é importante para quem quer começar um negócio?","Ter boas ideias e trabalhar com dedicação","Esperar a sorte chegar","Guardar todas as ideias sem contar para ninguém","Fazer tudo sem planejamento","Ter boas ideias e trabalhar com dedicação"

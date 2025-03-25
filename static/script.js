@@ -54,7 +54,7 @@ const irParaQuiz = async (categoria, event) => {
 
         localStorage.setItem("perguntas", JSON.stringify(data));
         localStorage.setItem("categoriaSelecionada", categoria);
-
+        console.log(categoria);
         const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
         selecaoMenu.play();
 
@@ -93,19 +93,21 @@ async function carregarPerguntas() {
     const categoria = localStorage.getItem("categoriaSelecionada");
     localStorage.setItem("acertosconsecutivos", 0)
     localStorage.setItem("errosconsecutivos", 0);
-
+    console.log("Perguntas carregadas",perguntas)
        try {
-            const response = await fetch(`${API_BASE_URL}/${categoria}`);
+            const response = await fetch(`http://127.0.0.1:5000/perguntas/${categoria}`);
             if (!response.ok) {
                 throw new Error("Erro ao carregar as perguntas");
             }
             let perguntasCarregadas = await response.json();
             return perguntasCarregadas;
             
+            
         } catch (error) {
             console.error("Erro ao buscar perguntas:", error);
             return [];
         } 
+        
 }
 
 async function exibirPergunta(index = 0) {
@@ -126,7 +128,7 @@ async function exibirPergunta(index = 0) {
         { texto: perguntaAtual.OpcaoC, correta: perguntaAtual.OpcaoC === perguntaAtual.Resposta },
         { texto: perguntaAtual.OpcaoD, correta: perguntaAtual.OpcaoD === perguntaAtual.Resposta }
     ];
-
+    console.log("Pergunta atual:", perguntaAtual);
     // Embaralhar as opções
     opcoes = opcoes.sort(() => Math.random() - 0.5);
 

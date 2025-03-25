@@ -14,7 +14,7 @@ resposta_usuario = []
 app = Flask(__name__)
 CORS(app)
 
-CSV_FILE_GAME = os.path.join(os.path.dirname(__file__), "instances","Log-Jogo.csv")
+CSV_FILE_GAME = os.path.join(os.path.dirname(__file__), "instances","logs_transforma","Log-Jogo.csv")
 
 def ler_csv(caminho):
     # Lê o arquivo CSV com Pandas
@@ -33,14 +33,14 @@ def initialize_csvjogo():
         ])
         df.to_csv(CSV_FILE_GAME, index=False)
 
-CSV_FILE = os.path.join(os.path.dirname(__file__), "instances","Log-Foto.csv")
+CSV_FILE = os.path.join(os.path.dirname(__file__), "instances","logs_transforma","Log-Foto.csv")
 
 def initialize_csvfoto():
     if not os.path.exists(CSV_FILE):
         df = pd.DataFrame(columns=["id_pessoa", "horario_da_foto"])
         df.to_csv(CSV_FILE, index=False)
 
-csv_path = os.path.join(os.path.dirname(__file__), "instances", "Chiquinho.csv")
+csv_path = os.path.join(os.path.dirname(__file__), "instances","logs_transforma","transforma.csv")
 
 def load_question():
     df = pd.read_csv(csv_path)
@@ -74,7 +74,7 @@ def log_jogo():
     data = request.json
     required_fields = [
         "id_pessoa", "horario_inicio_jogo", "horario_fim_jogo", "horario_total",  
-"respostas_acertadas", "respostas_skip", "respostas_erradas", "pontuacao_final",  
+        "respostas_acertadas", "respostas_skip", "respostas_erradas", "pontuacao_final",  
     ]
     
     if not all(field in data for field in required_fields):
