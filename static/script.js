@@ -91,6 +91,9 @@ function irParaHome() {
 
 async function carregarPerguntas() {
     const categoria = localStorage.getItem("categoriaSelecionada");
+    localStorage.setItem("acertosconsecutivos", 0)
+    localStorage.setItem("errosconsecutivos", 0);
+
        try {
             const response = await fetch(`${API_BASE_URL}/${categoria}`);
             if (!response.ok) {
