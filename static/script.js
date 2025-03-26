@@ -7,6 +7,8 @@ const gifCache = {}; // Guarda os objetos no cache pré-carregados.
 let pontos = 0;
 let tempoTotal = 30;
 
+
+
 let acertos = parseInt(localStorage.getItem("acertosconsecutivos")) || 0;
 let erros = parseInt(localStorage.getItem("errosconsecutivos")) || 0;
 let skips = parseInt(localStorage.getItem("respostas_skip")) || 0;
@@ -100,6 +102,9 @@ async function carregarPerguntas() {
                 throw new Error("Erro ao carregar as perguntas");
             }
             let perguntasCarregadas = await response.json();
+
+            localStorage.setItem("totalPerguntas", perguntasCarregadas.length);
+
             return perguntasCarregadas;
             
             
@@ -184,7 +189,7 @@ function iniciarTemporizador() {
 
         timerText.textContent = tempoRestante;
         tempoRestante--;
-        atualizarCorFundo(tempoRestante, tempoTotal)
+        atualizarCorFundo(tempoRestante, tempoTotal)    
     }, 1000);
 }
 
@@ -219,9 +224,11 @@ function verificarResposta(opcaoSelecionada, respostaCorreta, index) {
     console.log("Selecionado:", opcaoSelecionada.substring(3).trim());
     console.log("Correto:", respostaCorreta.trim());
 
+    let totalPergunta = parseInt(localStorage.getItem("totalPerguntas")) || 1;
+    let ValorResposta = 100 / totalPergunta
 
     if (opcaoSelecionada.slice(3).trim() === respostaCorreta.trim()) {
-        pontos = Math.min(pontos + 20, 100);
+        pontos = Math.min(pontos + ValorResposta, 100);
     }
 
     localStorage.setItem("pontos", pontos);

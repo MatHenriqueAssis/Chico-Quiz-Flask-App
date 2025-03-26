@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const mensagem2 = document.getElementById("mensagem2");
     const video = document.getElementById("video");
     const fotografia = new Audio("/static/audios/cronometro-foto.mp3");
-    let cronometro = 10;
+    let cronometro = 5;
+    let fotoTirada = false;
     const captura = new Audio("/static/audios/tirar-foto.wav")
     mensagemTitulo.innerText = "Agora faça Xis que é hora da foto!";
     mensagem.innerHTML = `Faça uma pose bem bonita e se prepare que em <span style="color: red; fontsize: 1.5rem;"> ${cronometro} segundos</span> o Chico irá tirar uma foto sua.`;
@@ -19,7 +20,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Aguarde 2 segundos para estabilizar a câmera antes da captura
         setTimeout(() => {
-            captureAndUpload(video, stream), captura.play()}, 9000);
+                fotoTirada = true;
+                captura.play()
+                captureAndUpload(video, stream)
+        }, 3000);
+        
     } catch (error) {
         console.error("Erro ao acessar a câmera: ", error);
         alert("Permita o acesso à câmera para capturar imagens.");
@@ -28,18 +33,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     const intervalo = setInterval(() =>{
         cronometro--;
         mensagem.innerHTML = `Faça uma pose bem bonita e se prepare que em <span style="color: red; fontsize: 1.5rem;"> ${cronometro} segundos</span> o Chico irá tirar uma foto sua.`;
-        if( intervalo <= 0){
+        document.appendChild(mensagem)
+        if( cronometro < 1){
             clearInterval(intervalo)
         }
     }, 1000)
 
-    // Após 3 segundos, registra o log da foto no servidor
-    setTimeout(enviarLogFoto, 3000);
 
-    // Após 10 segundos, redireciona o usuário
+
+    // Após 2 segundos, registra o log da foto no servidor
+    setTimeout(enviarLogFoto, 2000);
+    
     setTimeout(() => {
         window.location.href = "/";
-    }, 11000);
+    }, 5000);
 });
 
 async function captureAndUpload(video, stream) {
