@@ -103,6 +103,8 @@ async function carregarPerguntas() {
             }
             let perguntasCarregadas = await response.json();
 
+            perguntasCarregadas = perguntasCarregadas.sort(() => Math.random() - 0.5);
+
             localStorage.setItem("totalPerguntas", perguntasCarregadas.length);
 
             return perguntasCarregadas;
