@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const captura = new Audio("/static/audios/tirar-foto.wav")
     mensagemTitulo.innerText = "Agora faça Xis que é hora da foto!";
     mensagem.innerHTML = `Faça uma pose bem bonita e se prepare que em <span style="color: red; fontsize: 1.5rem;"> ${cronometro} segundos</span> o Chico irá tirar uma foto sua ou aperte Play para tirar uma foto.`;
-    mensagem2.innerText = "Confira a sua foto em https://chico-site.netlify.app/";
+    mensagem2.innerText = "Confira a sua foto no site do Chico!";
 
     fotografia.play();
 
