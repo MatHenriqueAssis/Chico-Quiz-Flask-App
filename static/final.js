@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mensagem2.innerHTML = `Espero que você tenha se divertido <span style="color: red; fontsize: 1.5rem;"><3</span>`
         gif.src = "/static/gifs/grandes/CoracaoGrande.gif";
         parabens.play();
-    } else if (pontuacao > 40 && pontuacao <= 80) {
+    } else if (pontuacao > 50 && pontuacao <= 75) {
         mensagemTitulo.innerText = `Muito bem, você fez ${pontuacao} pontos!`
         mensagemTitulo.classList.add('linear-orange')
         mensagem.innerText = "O chico está feliz, mas ele está torcendo para você acertar todas da próxima vez";
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mensagemTitulo.classList.add('linear-red')
         mensagem.innerText = "O Chico está triste, mas ele acredita no seu potencial!"
         mensagem2.innerText = "Vamos jogar novamente :D";
-        gif.src = "/static/gifs/grandes/DeBobeiraGrande.gif";
+        gif.src = "/static/gifs/grandes/TristeGrande.gif";
         parabens.play();
     }
 
