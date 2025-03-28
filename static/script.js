@@ -58,9 +58,9 @@ const irParaQuiz = async (categoria, event) => {
         localStorage.setItem("categoriaSelecionada", categoria);
         console.log(categoria);
         const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
-
+        selecaoMenu.play();
+        
         setTimeout(async () => {
-            selecaoMenu.play();
             window.location.href = "quiz";
             await loadQuestion(categoria);
         }, 2000);
@@ -159,6 +159,7 @@ async function exibirPergunta(index = 0) {
 function iniciarTemporizador() {
     let timerCircle = document.getElementById("timer-circle");
     let timerText = document.getElementById("timer-text");
+    let timerpergunta;
     
     clearInterval(timer);
     tempoRestante = tempoTotal // Reinicia o tempo
@@ -167,24 +168,32 @@ function iniciarTemporizador() {
 
     timerText.textContent = tempoRestante; // Atualiza o valor inicial na interface
 
+    if(!timerpergunta){
+        timerpergunta = new Audio('/static/audios/cronometro-perguntas.mp3')
+        timerpergunta.playbackRate = 0.5
+    }
+
+
     timer = setInterval(() => {
         if(tempoRestante <= 0) {
             clearInterval(timer);
+            timerpergunta.pause();
+            timerpergunta.currentTime = 0;
             skips++
             localStorage.setItem("respostas_skip", skips);
             passarParaProximaPergunta();
             return
         }   
         
-        timerpergunta = new Audio('/static/audios/cronometro-perguntas.mp3')
-        timerpergunta.playbackRate = 0.5
-
+        if(tempoRestante === 15) {
+            timerpergunta.play();
+        }
         
         if(tempoRestante === 30) {
             changeFace("FalandoPequeno");
         }
 
-        if(tempoRestante <= 10){
+        if(tempoRestante <= 15){
             changeFace("NervosoPequeno")
         }
 
