@@ -59,7 +59,7 @@ const irParaQuiz = async (categoria, event) => {
         console.log(categoria);
         const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
         selecaoMenu.play();
-        
+
         setTimeout(async () => {
             window.location.href = "quiz";
             await loadQuestion(categoria);
@@ -83,6 +83,10 @@ function irParaCategoria (event) {
 
 function irParaSelfie (event) {
     event.target.classList.add('clicked')
+
+    const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
+    selecaoMenu.play();
+    
     setTimeout(() => {
         window.location.href = "selfie"
     }, 2000)
