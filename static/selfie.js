@@ -11,6 +11,7 @@ function irParaChicoThuglife() {
 }
 
 document.addEventListener("keydown", function(event) {
+    
     const opcoesfoto = document.querySelectorAll(".foto");
     
     if (opcoesfoto.length === 0) return;

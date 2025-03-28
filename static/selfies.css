@@ -112,3 +112,12 @@ body::before {
     transition: all ease .5s;
     display: none;
 }
+
+.clicked{
+    border-image: linear-gradient(to bottom, #9AF8AC, #01332E) !important;
+    border-image-slice: 4 !important;
+    background: linear-gradient(180deg, #07A163,  #036D57) !important;
+    color: #fff !important;
+    box-shadow: 15px 17px 0 rgba(1, 63, 57, 0.72) !important;
+    animation: blink .5s infinite;
+}

@@ -25,10 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (playButton) {
         playButton.addEventListener('click', () => {
-            if (categorias) {
-                categorias.style.display = 'block';
-            }
-            telaInicial.style.display = 'none';
             localStorage.setItem("inicioQuiz", new Date().toISOString());
             console.log("⏳ Horário de início do quiz salvo:", localStorage.getItem("inicioQuiz"));
         });

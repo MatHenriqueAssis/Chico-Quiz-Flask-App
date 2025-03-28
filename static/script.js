@@ -58,9 +58,9 @@ const irParaQuiz = async (categoria, event) => {
         localStorage.setItem("categoriaSelecionada", categoria);
         console.log(categoria);
         const selecaoMenu = new Audio("/static/audios/confirmou-opcao.mp3");
-        selecaoMenu.play();
 
         setTimeout(async () => {
+            selecaoMenu.play();
             window.location.href = "quiz";
             await loadQuestion(categoria);
         }, 2000);
@@ -69,19 +69,23 @@ const irParaQuiz = async (categoria, event) => {
     }
 };
 
-function irParaCategoria () {
+function irParaCategoria (event) {
+    event.target.classList.add('clicked')
     const selecionarjogar = new Audio('/static/audios/selecionou-jogar.mp3');
     selecionarjogar.playbackRate = 1
     selecionarjogar.play();
     setTimeout(() => {
         window.location.href = "categoria";
-    }, 1000)
+    }, 2000)
     
 
 }
 
-function irParaSelfie () {
-    window.location.href = "selfie"
+function irParaSelfie (event) {
+    event.target.classList.add('clicked')
+    setTimeout(() => {
+        window.location.href = "selfie"
+    }, 2000)
 
 }
 
